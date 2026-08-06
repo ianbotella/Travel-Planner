@@ -38,24 +38,33 @@ const PASAJE_FIN_VERBO = {
   vuelo: "Llega hoy"
 };
 
+/* Estado en memoria de los datos cargados, para poder actualizarlos
+   tras un guardado sin tener que releer los JSON */
+const STATE = { data: null, transporte: null, hospedajes: null, lookups: null };
+
+const GH_TOKEN_KEY = "tp_gh_token";
+const REPO_OWNER = location.hostname.endsWith(".github.io") ? location.hostname.split(".")[0] : "ianbotella";
+const REPO_NAME = location.pathname.split("/").filter(Boolean)[0] || "Travel-Planner";
+
 async function init() {
   const [itinerarioRes, transporteRes, hospedajesRes] = await Promise.all([
     fetch("data/itinerario.json"),
     fetch("data/transporte.json"),
     fetch("data/hospedajes.json")
   ]);
-  const data = await itinerarioRes.json();
-  const transporte = await transporteRes.json();
-  const hospedajes = await hospedajesRes.json();
+  STATE.data = await itinerarioRes.json();
+  STATE.transporte = await transporteRes.json();
+  STATE.hospedajes = await hospedajesRes.json();
+  STATE.lookups = buildLookups(STATE.transporte.items, STATE.hospedajes.items);
 
-  const lookups = buildLookups(transporte.items, hospedajes.items);
-
-  renderMasthead(data.viaje);
-  renderBlockNav(data.bloques);
-  renderPending(data);
-  renderStatus(transporte.items, hospedajes.items);
-  renderTimeline(data, lookups);
-  setupScrollSpy(data.bloques);
+  renderMasthead(STATE.data.viaje);
+  renderBlockNav(STATE.data.bloques);
+  renderPending(STATE.data);
+  renderStatus(STATE.transporte.items, STATE.hospedajes.items);
+  renderTimeline(STATE.data, STATE.lookups);
+  setupScrollSpy(STATE.data.bloques);
+  setupEditing();
+  setupSettingsModal();
 }
 
 /* Arma mapas día -> item para no recorrer todo en cada tarjeta */
@@ -199,21 +208,21 @@ function logiboxHtml(item, kind, context) {
   const doneClass = item.hecho ? "is-done" : "is-pending";
   const checkMark = item.hecho ? ICONS.check : "";
 
-  const campos = (item.campos || []).filter((c) => c.valor);
+  const camposConValor = (item.campos || []).filter((c) => c.valor);
 
   if (context === "secondary") {
     const verbo = isHospedaje ? "Salís hoy de" : PASAJE_FIN_VERBO[item.tipo] || "Termina hoy";
-    const nombre = item.hecho && campos[0] ? campos[0].valor : item.titulo;
+    const nombre = item.hecho && camposConValor[0] ? camposConValor[0].valor : item.titulo;
     const detalle = item.hecho
-      ? campos.length
-        ? `<dl class="logibox__fields">${campos
+      ? camposConValor.length
+        ? `<dl class="logibox__fields">${camposConValor
             .map((c) => `<div><dt>${escapeHtml(c.label)}</dt><dd>${escapeHtml(c.valor)}</dd></div>`)
             .join("")}</dl>`
         : `<p class="logibox__empty">Confirmado — faltan cargar los datos.</p>`
       : `<p class="logibox__empty">Todavía no reservado.</p>`;
 
     return `
-      <details class="logibox logibox--${kind}${modifier} ${doneClass}">
+      <details class="logibox logibox--${kind}${modifier} ${doneClass}" data-item-id="${item.id}" data-kind="${kind}">
         <summary>
           <span class="logibox__check" aria-hidden="true">${checkMark}</span>
           <span class="logibox__icon" aria-hidden="true">${icon}</span>
@@ -223,30 +232,210 @@ function logiboxHtml(item, kind, context) {
       </details>`;
   }
 
-  // primary
+  // primary — formulario editable con los campos de la reserva
   const summary = item.hecho
-    ? campos.length
-      ? campos.slice(0, 2).map((c) => escapeHtml(c.valor)).join(" · ")
+    ? camposConValor.length
+      ? camposConValor.slice(0, 2).map((c) => escapeHtml(c.valor)).join(" · ")
       : "Confirmado"
     : "Pendiente de reservar";
 
-  const detalle = item.hecho
-    ? campos.length
-      ? `<dl class="logibox__fields">${campos
-          .map((c) => `<div><dt>${escapeHtml(c.label)}</dt><dd>${escapeHtml(c.valor)}</dd></div>`)
-          .join("")}</dl>${item.notas ? `<p class="logibox__notas">${escapeHtml(item.notas)}</p>` : ""}`
-      : `<p class="logibox__empty">Confirmado — faltan cargar los datos.</p>`
-    : `<p class="logibox__empty">Todavía no reservado.${item.notas ? ` ${escapeHtml(item.notas)}` : ""}</p>`;
+  const camposHtml = (item.campos || [])
+    .map(
+      (c, i) => `
+      <label class="logibox__field">
+        <span>${escapeHtml(c.label)}</span>
+        <input type="text" name="campo-${i}" value="${escapeHtml(c.valor)}" placeholder="${escapeHtml(c.label)}">
+      </label>`
+    )
+    .join("");
 
   return `
-    <details class="logibox logibox--${kind} ${doneClass}">
+    <details class="logibox logibox--${kind} ${doneClass}" data-item-id="${item.id}" data-kind="${kind}">
       <summary>
         <span class="logibox__check" aria-hidden="true">${checkMark}</span>
         <span class="logibox__icon" aria-hidden="true">${icon}</span>
         <span class="logibox__summary"><strong>${escapeHtml(item.titulo)}</strong> · ${summary}</span>
       </summary>
-      <div class="logibox__detail">${detalle}</div>
+      <div class="logibox__detail">
+        <form class="logibox__form" data-item-id="${item.id}" data-kind="${kind}">
+          ${camposHtml}
+          <label class="logibox__field logibox__field--notas">
+            <span>Notas</span>
+            <textarea name="notas" rows="2" placeholder="Notas">${escapeHtml(item.notas || "")}</textarea>
+          </label>
+          <div class="logibox__actions">
+            <button type="submit" class="logibox__save">Guardar</button>
+            ${item.hecho ? `<button type="button" class="logibox__unmark">Marcar como pendiente</button>` : ""}
+            <span class="logibox__save-status" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
     </details>`;
+}
+
+/* Reemplaza en el DOM todas las apariciones (primaria y secundaria)
+   de un item con su HTML actualizado, preservando el estado abierto/cerrado */
+function refreshLogiboxesForItem(kind, item) {
+  document.querySelectorAll(`.logibox[data-item-id="${item.id}"]`).forEach((el) => {
+    const context = el.classList.contains("is-secondary") ? "secondary" : "primary";
+    const wasOpen = el.open;
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = logiboxHtml(item, kind, context).trim();
+    const newEl = wrapper.firstElementChild;
+    newEl.open = wasOpen;
+    el.replaceWith(newEl);
+  });
+}
+
+/* Delegación de eventos sobre el timeline: los logiboxes se regeneran
+   dinámicamente, así que conviene escuchar en el contenedor fijo */
+function setupEditing() {
+  const timeline = document.getElementById("timeline");
+
+  timeline.addEventListener("submit", (e) => {
+    const form = e.target.closest(".logibox__form");
+    if (!form) return;
+    e.preventDefault();
+    guardarReserva(form.dataset.kind, form.dataset.itemId, form, true);
+  });
+
+  timeline.addEventListener("click", (e) => {
+    const btn = e.target.closest(".logibox__unmark");
+    if (!btn) return;
+    const form = btn.closest(".logibox__form");
+    if (form) guardarReserva(form.dataset.kind, form.dataset.itemId, form, false);
+  });
+}
+
+/* Guarda los campos de una reserva directamente en el repo de GitHub
+   (Contents API) y refleja el resultado en el estado local + DOM */
+async function guardarReserva(kind, itemId, form, hecho) {
+  const token = getGhToken();
+  const statusEl = form.querySelector(".logibox__save-status");
+  const saveBtn = form.querySelector(".logibox__save");
+  const unmarkBtn = form.querySelector(".logibox__unmark");
+
+  if (!token) {
+    if (statusEl) statusEl.textContent = "Configurá tu token para poder guardar (botón ⚙ arriba).";
+    openSettingsModal();
+    return;
+  }
+
+  if (saveBtn) saveBtn.disabled = true;
+  if (unmarkBtn) unmarkBtn.disabled = true;
+  if (statusEl) statusEl.textContent = "Guardando…";
+
+  try {
+    const filename = kind === "hospedaje" ? "hospedajes.json" : "transporte.json";
+    const path = `data/${filename}`;
+    const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`;
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json"
+    };
+
+    const getRes = await fetch(apiUrl, { headers });
+    if (!getRes.ok) throw new Error(`No se pudo leer ${filename} (HTTP ${getRes.status})`);
+    const fileMeta = await getRes.json();
+    const fileContent = JSON.parse(b64DecodeUnicode(fileMeta.content));
+
+    const item = fileContent.items.find((i) => i.id === itemId);
+    if (!item) throw new Error(`No se encontró "${itemId}" en ${filename}`);
+
+    const formData = new FormData(form);
+    item.campos = (item.campos || []).map((c, i) => ({
+      ...c,
+      valor: (formData.get(`campo-${i}`) || "").toString().trim()
+    }));
+    item.notas = (formData.get("notas") || "").toString().trim();
+    item.hecho = hecho;
+
+    const putRes = await fetch(apiUrl, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify({
+        message: `Actualizar reserva: ${item.titulo || itemId}`,
+        content: b64EncodeUnicode(JSON.stringify(fileContent, null, 2) + "\n"),
+        sha: fileMeta.sha
+      })
+    });
+    if (!putRes.ok) {
+      const errBody = await putRes.json().catch(() => ({}));
+      throw new Error(errBody.message || `No se pudo guardar (HTTP ${putRes.status})`);
+    }
+
+    const list = kind === "hospedaje" ? STATE.hospedajes.items : STATE.transporte.items;
+    const idx = list.findIndex((i) => i.id === itemId);
+    const updatedItem = idx !== -1 ? Object.assign(list[idx], item) : item;
+
+    refreshLogiboxesForItem(kind, updatedItem);
+    renderStatus(STATE.transporte.items, STATE.hospedajes.items);
+  } catch (err) {
+    console.error(err);
+    if (statusEl) statusEl.textContent = `Error: ${err.message}`;
+    if (saveBtn) saveBtn.disabled = false;
+    if (unmarkBtn) unmarkBtn.disabled = false;
+  }
+}
+
+function getGhToken() {
+  return localStorage.getItem(GH_TOKEN_KEY) || "";
+}
+
+function b64EncodeUnicode(str) {
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16))));
+}
+
+function b64DecodeUnicode(str) {
+  return decodeURIComponent(
+    atob(str)
+      .split("")
+      .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+      .join("")
+  );
+}
+
+function openSettingsModal() {
+  const modal = document.getElementById("settings-modal");
+  const statusEl = document.getElementById("settings-token-status");
+  if (statusEl) {
+    statusEl.textContent = getGhToken() ? "Token guardado en este navegador." : "Todavía no cargaste un token.";
+  }
+  if (modal) modal.hidden = false;
+}
+
+function closeSettingsModal() {
+  const modal = document.getElementById("settings-modal");
+  if (modal) modal.hidden = true;
+}
+
+function setupSettingsModal() {
+  const openBtn = document.getElementById("settings-open-btn");
+  const modal = document.getElementById("settings-modal");
+  const input = document.getElementById("settings-token-input");
+  const saveBtn = document.getElementById("settings-save-btn");
+  const clearBtn = document.getElementById("settings-clear-btn");
+  const statusEl = document.getElementById("settings-token-status");
+
+  openBtn.addEventListener("click", () => {
+    input.value = "";
+    openSettingsModal();
+  });
+
+  modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeSettingsModal));
+
+  saveBtn.addEventListener("click", () => {
+    const value = input.value.trim();
+    if (!value) return;
+    localStorage.setItem(GH_TOKEN_KEY, value);
+    input.value = "";
+    statusEl.textContent = "Token guardado en este navegador.";
+  });
+
+  clearBtn.addEventListener("click", () => {
+    localStorage.removeItem(GH_TOKEN_KEY);
+    statusEl.textContent = "Todavía no cargaste un token.";
+  });
 }
 
 function loadGiscusInto(slot, term) {

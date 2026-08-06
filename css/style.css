@@ -104,6 +104,121 @@ a { color: inherit; }
   margin: 0.6rem 0 0;
 }
 
+.masthead__settings {
+  margin-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+}
+
+.masthead__settings:hover { border-color: var(--ink); }
+
+/* ============================================================
+   Modal de configuración (token de GitHub)
+   ============================================================ */
+.tp-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.tp-modal[hidden] { display: none; }
+
+.tp-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(36, 48, 61, 0.55);
+}
+
+.tp-modal__panel {
+  position: relative;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  box-shadow: 3px 3px 0 rgba(36, 48, 61, 0.15);
+}
+
+.tp-modal__panel h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem;
+}
+
+.tp-modal__panel p { font-size: 0.88rem; margin: 0 0 0.75rem; }
+
+.tp-modal__panel ol {
+  font-size: 0.85rem;
+  padding-left: 1.2rem;
+  margin: 0 0 1rem;
+}
+
+.tp-modal__panel ol li { margin-bottom: 0.3rem; }
+
+.tp-modal__panel code {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 0.05rem 0.3rem;
+  border-radius: 2px;
+  font-size: 0.85em;
+}
+
+#settings-token-input {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.tp-modal__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.tp-modal__actions button {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  cursor: pointer;
+}
+
+#settings-clear-btn,
+#settings-close-btn {
+  background: transparent;
+  color: var(--ink);
+}
+
+.tp-modal__note {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
 /* ============================================================
    Block nav (pills)
    ============================================================ */
@@ -313,6 +428,75 @@ a { color: inherit; }
   margin: 0.5rem 0 0;
   color: var(--ink-soft);
   font-size: 0.8rem;
+}
+
+.logibox__form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.logibox__field {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.logibox__field span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.logibox__field input,
+.logibox__field textarea {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  width: 100%;
+}
+
+.logibox__field textarea { resize: vertical; }
+
+.logibox__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.2rem;
+}
+
+.logibox__save,
+.logibox__unmark {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.logibox__save {
+  border: 1px solid var(--logistica);
+  background: var(--logistica);
+  color: #fff;
+}
+
+.logibox__save:disabled { opacity: 0.6; cursor: default; }
+
+.logibox__unmark {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+.logibox__save-status {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
 }
 
 /* ============================================================
