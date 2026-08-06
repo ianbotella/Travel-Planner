@@ -97,6 +97,13 @@ a { color: inherit; }
   margin: 0;
 }
 
+.masthead__status {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--logistica);
+  margin: 0.6rem 0 0;
+}
+
 /* ============================================================
    Block nav (pills)
    ============================================================ */
@@ -135,25 +142,6 @@ a { color: inherit; }
 .blocknav__pill[data-active="true"] {
   background: var(--block-color, var(--ink));
   border-color: var(--block-color, var(--ink));
-  color: #fff;
-}
-
-.blocknav__sep {
-  flex: 0 0 auto;
-  width: 1px;
-  align-self: stretch;
-  background: var(--line);
-  margin: 0.1rem 0.15rem;
-}
-
-.blocknav__pill--logistica {
-  border-color: var(--logistica);
-  color: var(--logistica);
-  background: var(--logistica-soft);
-}
-
-.blocknav__pill--logistica:hover {
-  background: var(--logistica);
   color: #fff;
 }
 
@@ -200,248 +188,131 @@ a { color: inherit; }
 }
 
 /* ============================================================
-   Checklist sections (Pasajes / Hospedajes)
+   Logibox — pasaje / hospedaje embebidos dentro de la tarjeta del día
    ============================================================ */
-.checklist {
-  max-width: var(--max-w);
-  margin: 2.25rem auto 0;
-  padding: 0 1.25rem;
+.daycard__aviso + .logibox,
+.daycard__notas + .logibox {
+  margin-top: 0.75rem;
 }
 
-.checklist__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem;
-  border-bottom: 2px solid var(--logistica);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.1rem;
+.logibox + .logibox {
+  margin-top: 0.5rem;
 }
 
-.checklist__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.3rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--logistica);
-  margin: 0;
-}
-
-.checklist__progress {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  margin: 0;
-  white-space: nowrap;
-}
-
-.checklist__grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-/* ---- Ticket card (Pasajes): boarding-pass shape ---- */
-.ticketcard {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  background: var(--paper-raised);
-  border: 1px solid var(--line);
+.logibox {
+  margin-top: 0.75rem;
+  border: 1px solid var(--logistica);
   border-radius: var(--radius);
+  background: var(--logistica-soft);
   overflow: hidden;
-  box-shadow: 2px 2px 0 rgba(36,48,61,0.06);
 }
 
-.ticketcard.is-pending { border-style: dashed; opacity: 0.85; }
-
-.ticketcard__main {
-  display: flex;
-  gap: 0.65rem;
-  align-items: flex-start;
-  padding: 0.9rem 0.8rem;
+.logibox.is-pending {
+  border-style: dashed;
+  background: transparent;
 }
 
-.ticketcard__check {
-  width: 1.3rem;
-  height: 1.3rem;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  border: 2px solid var(--logistica);
+.logibox.is-secondary {
+  border-style: dotted;
+  background: transparent;
+  opacity: 0.85;
+}
+
+.logibox summary {
+  cursor: pointer;
+  list-style: none;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #fff;
-  background: var(--is-done, transparent);
-}
-
-.ticketcard.is-done .ticketcard__check { background: var(--logistica); }
-.ticketcard__check svg { width: 0.75rem; height: 0.75rem; }
-
-.ticketcard__body { min-width: 0; }
-
-.ticketcard__icon { color: var(--logistica); margin-bottom: 0.3rem; }
-.ticketcard__icon svg { width: 18px; height: 18px; }
-
-.ticketcard__title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.02rem;
-  margin: 0 0 0.15rem;
-  line-height: 1.2;
-}
-
-.ticketcard__subtitle {
-  margin: 0 0 0.15rem;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
   font-size: 0.85rem;
-  color: var(--ink-soft);
 }
 
-.ticketcard__date {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--ink-soft);
-}
+.logibox summary::-webkit-details-marker { display: none; }
 
-.ticketcard__stub {
-  border-left: 1px dashed var(--line);
-  background: repeating-linear-gradient(180deg, var(--paper) 0 6px, var(--paper-raised) 6px 12px);
-  background-color: var(--paper);
-  padding: 0.9rem 0.8rem;
-  width: 168px;
+.logibox summary::after {
+  content: "+";
+  margin-left: auto;
   flex: 0 0 auto;
-  font-size: 0.78rem;
-}
-
-.ticketcard__fields { margin: 0; }
-.ticketcard__fields div { margin-bottom: 0.5rem; }
-.ticketcard__fields div:last-child { margin-bottom: 0; }
-.ticketcard__fields dt {
+  width: 1.1em;
+  text-align: center;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-}
-.ticketcard__fields dd {
-  margin: 0.05rem 0 0;
-  font-weight: 600;
-  font-family: var(--font-mono);
-}
-
-.ticketcard__empty {
-  margin: 0;
-  font-style: italic;
-  color: var(--ink-soft);
-  font-size: 0.78rem;
-}
-
-.ticketcard__notas {
-  margin: 0.5rem 0 0;
   font-size: 0.75rem;
-  color: var(--ink-soft);
-  font-family: var(--font-body);
+  color: var(--logistica);
 }
 
-/* ---- Tag card (Hospedajes): luggage-tag shape ---- */
-.tagcard {
-  position: relative;
-  background: var(--paper-raised);
-  border: 1px solid var(--line);
-  border-radius: var(--radius) var(--radius) var(--radius) 14px;
-  box-shadow: 2px 2px 0 rgba(36,48,61,0.06);
-  padding: 0.95rem 1rem 1rem 1.7rem;
-}
+.logibox[open] summary::after { content: "–"; }
 
-.tagcard.is-pending { border-style: dashed; opacity: 0.85; }
-
-/* the check IS the tag's punched hole — grommet doubles as status */
-.tagcard__check {
-  position: absolute;
-  left: 0.6rem;
-  top: 0.95rem;
-  width: 15px;
-  height: 15px;
+.logibox__check {
+  flex: 0 0 auto;
+  width: 1.05rem;
+  height: 1.05rem;
   border-radius: 50%;
-  border: 1.5px solid var(--ink-soft);
-  background: var(--paper);
+  border: 1.5px solid var(--logistica);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
 }
 
-.tagcard.is-done .tagcard__check {
-  border-color: var(--logistica);
-  background: var(--logistica);
+.logibox.is-done .logibox__check { background: var(--logistica); }
+.logibox__check svg { width: 0.6rem; height: 0.6rem; }
+
+.logibox__icon {
+  flex: 0 0 auto;
+  color: var(--logistica);
+  display: flex;
+}
+.logibox__icon svg { width: 15px; height: 15px; }
+
+.logibox__summary {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
 }
 
-.tagcard__check svg { width: 0.7rem; height: 0.7rem; }
+.logibox__summary strong { font-weight: 600; }
 
-.tagcard__main { display: block; }
-.tagcard__body { min-width: 0; }
-.tagcard__icon { color: var(--logistica); margin-bottom: 0.25rem; }
-.tagcard__icon svg { width: 17px; height: 17px; }
-
-.tagcard__title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.05rem;
-  margin: 0 0 0.1rem;
-}
-
-.tagcard__date {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--ink-soft);
-}
-
-.tagcard__stub {
-  margin-top: 0.6rem;
-  padding-top: 0.6rem;
-  border-top: 1px dashed var(--line);
+.logibox__detail {
+  padding: 0 0.7rem 0.7rem 2.3rem;
   font-size: 0.82rem;
 }
 
-.tagcard__fields { margin: 0; display: grid; gap: 0.4rem; }
-.tagcard__fields dt {
+.logibox__fields {
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.logibox__fields div { display: block; }
+
+.logibox__fields dt {
+  display: inline;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--ink-soft);
-  display: inline;
 }
-.tagcard__fields dd {
+
+.logibox__fields dd {
   display: inline;
   margin: 0 0 0 0.35rem;
   font-weight: 600;
 }
-.tagcard__fields div { display: block; }
 
-.tagcard__empty {
+.logibox__empty {
   margin: 0;
   font-style: italic;
   color: var(--ink-soft);
-  font-size: 0.8rem;
 }
 
-.tagcard__notas {
-  margin: 0.4rem 0 0;
-  font-size: 0.78rem;
+.logibox__notas {
+  margin: 0.5rem 0 0;
   color: var(--ink-soft);
-}
-
-@media (max-width: 480px) {
-  .ticketcard { grid-template-columns: 1fr; }
-  .ticketcard__stub {
-    width: auto;
-    border-left: none;
-    border-top: 1px dashed var(--line);
-  }
-  .checklist__head { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+  font-size: 0.8rem;
 }
 
 /* ============================================================

@@ -18,7 +18,8 @@ const ICONS = {
   "tren-auto": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="8" rx="2"/><path d="M3 9h8"/><path d="M14 20v-3l1-3h6l1 3v3"/><path d="M14 20h8M16 20v1M20 20v1"/></svg>`,
   quieto: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>`,
   hospedaje: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l9-6 9 6v11"/><path d="M9 20v-7h6v7"/></svg>`,
-  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>`
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>`,
+  maleta: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M4 13h16"/></svg>`
 };
 
 const MEDIO_LABEL = {
@@ -27,6 +28,14 @@ const MEDIO_LABEL = {
   auto: "auto",
   "tren-auto": "tren + auto",
   quieto: "sin traslado"
+};
+
+/* Texto para la nota liviana del día de cierre (diaFin) de un pasaje */
+const PASAJE_FIN_VERBO = {
+  tren: "Llega hoy",
+  auto: "Devolución hoy",
+  "tren-auto": "Llega hoy",
+  vuelo: "Llega hoy"
 };
 
 async function init() {
@@ -39,31 +48,38 @@ async function init() {
   const transporte = await transporteRes.json();
   const hospedajes = await hospedajesRes.json();
 
+  const lookups = buildLookups(transporte.items, hospedajes.items);
+
   renderMasthead(data.viaje);
   renderBlockNav(data.bloques);
   renderPending(data);
-  renderChecklist({
-    items: transporte.items,
-    gridId: "transporte-grid",
-    progressId: "transporte-progress",
-    variant: "ticket",
-    iconFor: (item) => ICONS[item.tipo] || ICONS.quieto,
-    subtitleFor: (item) => item.tramo,
-    dateFor: (item) => item.fecha,
-    noun: { singular: "pasaje reservado", plural: "pasajes reservados" }
-  });
-  renderChecklist({
-    items: hospedajes.items,
-    gridId: "hospedajes-grid",
-    progressId: "hospedajes-progress",
-    variant: "tag",
-    iconFor: () => ICONS.hospedaje,
-    subtitleFor: () => "",
-    dateFor: (item) => item.fechas,
-    noun: { singular: "hospedaje confirmado", plural: "hospedajes confirmados" }
-  });
-  renderTimeline(data);
+  renderStatus(transporte.items, hospedajes.items);
+  renderTimeline(data, lookups);
   setupScrollSpy(data.bloques);
+}
+
+/* Arma mapas día -> item para no recorrer todo en cada tarjeta */
+function buildLookups(transporteItems, hospedajesItems) {
+  const pasajePorDia = new Map();
+  const pasajeFinPorDia = new Map();
+  transporteItems.forEach((item) => {
+    if (item.dia) addToMap(pasajePorDia, item.dia, item);
+    if (item.diaFin && item.diaFin !== item.dia) addToMap(pasajeFinPorDia, item.diaFin, item);
+  });
+
+  const hospedajeInicioPorDia = new Map();
+  const hospedajeFinPorDia = new Map();
+  hospedajesItems.forEach((item) => {
+    if (item.diaInicio) addToMap(hospedajeInicioPorDia, item.diaInicio, item);
+    if (item.diaFin) addToMap(hospedajeFinPorDia, item.diaFin, item);
+  });
+
+  return { pasajePorDia, pasajeFinPorDia, hospedajeInicioPorDia, hospedajeFinPorDia };
+}
+
+function addToMap(map, key, item) {
+  if (!map.has(key)) map.set(key, []);
+  map.get(key).push(item);
 }
 
 function renderMasthead(viaje) {
@@ -72,19 +88,21 @@ function renderMasthead(viaje) {
   document.getElementById("viaje-crew").textContent = viaje.integrantes.join(" · ");
 }
 
+function renderStatus(transporteItems, hospedajesItems) {
+  const tHechos = transporteItems.filter((i) => i.hecho).length;
+  const hHechos = hospedajesItems.filter((i) => i.hecho).length;
+  document.getElementById("viaje-status").textContent =
+    `${tHechos} de ${transporteItems.length} pasajes reservados · ${hHechos} de ${hospedajesItems.length} hospedajes confirmados`;
+}
+
 function renderBlockNav(bloques) {
   const nav = document.getElementById("blocknav");
-  const bloquePills = bloques
+  nav.innerHTML = bloques
     .map(
       (b) =>
         `<a class="blocknav__pill" href="#bloque-${b.id}" data-block="${b.id}" style="--block-color:${b.color}">${b.nombre}</a>`
     )
     .join("");
-  const extraPills = `
-    <span class="blocknav__sep" aria-hidden="true"></span>
-    <a class="blocknav__pill blocknav__pill--logistica" href="#transporte-panel">Pasajes</a>
-    <a class="blocknav__pill blocknav__pill--logistica" href="#hospedajes-panel">Hospedajes</a>`;
-  nav.innerHTML = bloquePills + extraPills;
 }
 
 function renderPending(data) {
@@ -103,51 +121,7 @@ function renderPending(data) {
     .join("");
 }
 
-function renderChecklist({ items, gridId, progressId, variant, iconFor, subtitleFor, dateFor, noun }) {
-  const grid = document.getElementById(gridId);
-  const progress = document.getElementById(progressId);
-
-  const hechos = items.filter((i) => i.hecho).length;
-  const total = items.length;
-  progress.textContent = `${hechos} de ${total} ${hechos === 1 ? noun.singular : noun.plural}`;
-
-  grid.innerHTML = items.map((item) => checklistCardHtml(item, variant, iconFor, subtitleFor, dateFor)).join("");
-}
-
-function checklistCardHtml(item, variant, iconFor, subtitleFor, dateFor) {
-  const subtitle = subtitleFor(item);
-  const campos = (item.campos || []).filter((c) => item.hecho && c.valor);
-  const cardClass = variant === "ticket" ? "ticketcard" : "tagcard";
-
-  const camposHtml = item.hecho
-    ? campos.length
-      ? `<dl class="${cardClass}__fields">${campos
-          .map((c) => `<div><dt>${escapeHtml(c.label)}</dt><dd>${escapeHtml(c.valor)}</dd></div>`)
-          .join("")}</dl>`
-      : `<p class="${cardClass}__empty">Confirmado — faltan cargar los datos.</p>`
-    : `<p class="${cardClass}__empty">Todavía no reservado.</p>`;
-
-  const notasHtml = item.hecho && item.notas ? `<p class="${cardClass}__notas">${escapeHtml(item.notas)}</p>` : "";
-
-  return `
-    <article class="${cardClass} ${item.hecho ? "is-done" : "is-pending"}">
-      <div class="${cardClass}__main">
-        <div class="${cardClass}__check" aria-hidden="true">${item.hecho ? ICONS.check : ""}</div>
-        <div class="${cardClass}__body">
-          <div class="${cardClass}__icon">${iconFor(item)}</div>
-          <h3 class="${cardClass}__title">${escapeHtml(item.titulo)}</h3>
-          ${subtitle ? `<p class="${cardClass}__subtitle">${escapeHtml(subtitle)}</p>` : ""}
-          <p class="${cardClass}__date">${escapeHtml(dateFor(item))}</p>
-        </div>
-      </div>
-      <div class="${cardClass}__stub">
-        ${camposHtml}
-        ${notasHtml}
-      </div>
-    </article>`;
-}
-
-function renderTimeline(data) {
+function renderTimeline(data, lookups) {
   const timeline = document.getElementById("timeline");
   const porBloque = data.bloques.map((bloque) => ({
     bloque,
@@ -160,13 +134,13 @@ function renderTimeline(data) {
       <section class="blocksection" id="bloque-${bloque.id}" style="--block-color:${bloque.color}">
         <span class="blocksection__label">${bloque.nombre}</span>
         <div class="blocksection__track">
-          ${dias.map((d) => dayCardHtml(d)).join("")}
+          ${dias.map((d) => dayCardHtml(d, lookups)).join("")}
         </div>
       </section>`
     )
     .join("");
 
-  // habilitar giscus lazy-load al abrir cada <details>
+  // habilitar giscus lazy-load al abrir cada <details> de comentarios
   timeline.querySelectorAll(".daycard__comments").forEach((details) => {
     details.addEventListener(
       "toggle",
@@ -178,12 +152,24 @@ function renderTimeline(data) {
   });
 }
 
-function dayCardHtml(d) {
+function dayCardHtml(d, lookups) {
   const icon = ICONS[d.medio] || ICONS.quieto;
   const medioLabel = MEDIO_LABEL[d.medio] || "";
   const avisoHtml = d.aviso
     ? `<div class="daycard__aviso"><strong>A confirmar</strong><span>${escapeHtml(d.aviso)}</span></div>`
     : "";
+
+  const pasajes = lookups.pasajePorDia.get(d.dia) || [];
+  const pasajesFin = lookups.pasajeFinPorDia.get(d.dia) || [];
+  const hospedajesInicio = lookups.hospedajeInicioPorDia.get(d.dia) || [];
+  const hospedajesFin = lookups.hospedajeFinPorDia.get(d.dia) || [];
+
+  const logiHtml = [
+    ...pasajes.map((item) => logiboxHtml(item, "pasaje", "primary")),
+    ...hospedajesInicio.map((item) => logiboxHtml(item, "hospedaje", "primary")),
+    ...pasajesFin.map((item) => logiboxHtml(item, "pasaje", "secondary")),
+    ...hospedajesFin.map((item) => logiboxHtml(item, "hospedaje", "secondary"))
+  ].join("");
 
   return `
     <article class="daycard" id="dia-${d.dia}">
@@ -195,11 +181,72 @@ function dayCardHtml(d) {
       <h3 class="daycard__tramo">${escapeHtml(d.tramo)}</h3>
       <p class="daycard__notas">${escapeHtml(d.notas)}</p>
       ${avisoHtml}
+      ${logiHtml}
       <details class="daycard__comments" data-term="dia-${d.dia}">
         <summary>Comentarios y sugerencias</summary>
         <div class="giscus-slot"></div>
       </details>
     </article>`;
+}
+
+/* Caja colapsable de pasaje u hospedaje embebida en la tarjeta del día.
+   context "primary": la reserva arranca/aplica ese día (caja completa).
+   context "secondary": nota liviana de cierre (devolución/checkout/llegada). */
+function logiboxHtml(item, kind, context) {
+  const isHospedaje = kind === "hospedaje";
+  const icon = isHospedaje ? ICONS.hospedaje : ICONS[item.tipo] || ICONS.quieto;
+  const modifier = context === "secondary" ? " is-secondary" : "";
+  const doneClass = item.hecho ? "is-done" : "is-pending";
+  const checkMark = item.hecho ? ICONS.check : "";
+
+  const campos = (item.campos || []).filter((c) => c.valor);
+
+  if (context === "secondary") {
+    const verbo = isHospedaje ? "Salís hoy de" : PASAJE_FIN_VERBO[item.tipo] || "Termina hoy";
+    const nombre = item.hecho && campos[0] ? campos[0].valor : item.titulo;
+    const detalle = item.hecho
+      ? campos.length
+        ? `<dl class="logibox__fields">${campos
+            .map((c) => `<div><dt>${escapeHtml(c.label)}</dt><dd>${escapeHtml(c.valor)}</dd></div>`)
+            .join("")}</dl>`
+        : `<p class="logibox__empty">Confirmado — faltan cargar los datos.</p>`
+      : `<p class="logibox__empty">Todavía no reservado.</p>`;
+
+    return `
+      <details class="logibox logibox--${kind}${modifier} ${doneClass}">
+        <summary>
+          <span class="logibox__check" aria-hidden="true">${checkMark}</span>
+          <span class="logibox__icon" aria-hidden="true">${icon}</span>
+          <span class="logibox__summary">${escapeHtml(verbo)}: ${escapeHtml(nombre)}</span>
+        </summary>
+        <div class="logibox__detail">${detalle}</div>
+      </details>`;
+  }
+
+  // primary
+  const summary = item.hecho
+    ? campos.length
+      ? campos.slice(0, 2).map((c) => escapeHtml(c.valor)).join(" · ")
+      : "Confirmado"
+    : "Pendiente de reservar";
+
+  const detalle = item.hecho
+    ? campos.length
+      ? `<dl class="logibox__fields">${campos
+          .map((c) => `<div><dt>${escapeHtml(c.label)}</dt><dd>${escapeHtml(c.valor)}</dd></div>`)
+          .join("")}</dl>${item.notas ? `<p class="logibox__notas">${escapeHtml(item.notas)}</p>` : ""}`
+      : `<p class="logibox__empty">Confirmado — faltan cargar los datos.</p>`
+    : `<p class="logibox__empty">Todavía no reservado.${item.notas ? ` ${escapeHtml(item.notas)}` : ""}</p>`;
+
+  return `
+    <details class="logibox logibox--${kind} ${doneClass}">
+      <summary>
+        <span class="logibox__check" aria-hidden="true">${checkMark}</span>
+        <span class="logibox__icon" aria-hidden="true">${icon}</span>
+        <span class="logibox__summary"><strong>${escapeHtml(item.titulo)}</strong> · ${summary}</span>
+      </summary>
+      <div class="logibox__detail">${detalle}</div>
+    </details>`;
 }
 
 function loadGiscusInto(slot, term) {

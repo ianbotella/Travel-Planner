@@ -94,9 +94,9 @@ Todo el contenido del viaje vive en **`data/itinerario.json`**. Para agregar, mo
 - `bloque` tiene que coincidir con uno de los `id` definidos en `viaje.bloques` (dentro del mismo JSON), donde también se define el nombre y color de cada tramo del viaje.
 - `aviso` es opcional — sacalo cuando el tema quede resuelto y listo, desaparece solo del panel de pendientes.
 
-## 6. Actualizar los checklists de pasajes y hospedajes
+## 6. Actualizar los pasajes y hospedajes
 
-Igual que el itinerario, estos dos apartados son 100% manuales: no hay backend que guarde qué está reservado, así que **marcar algo como "hecho" es editar el archivo y volver a hacer `git push`**. Cuando alguien del grupo reserva un vuelo o un hotel, esa persona (o vos, si te pasan los datos) edita el JSON correspondiente.
+Los pasajes y hospedajes **no son una lista aparte**: cada uno vive embebido dentro de la tarjeta del día que le corresponde (colapsado, con un resumen, y expandible para ver el resto de los datos). Igual que el itinerario, esto es 100% manual — no hay backend que guarde qué está reservado, así que **marcar algo como confirmado es editar el archivo y volver a hacer `git push`**.
 
 ### `data/transporte.json`
 
@@ -109,6 +109,7 @@ Cada pasaje tiene esta forma:
   "titulo": "Vuelo Santiago → Londres",
   "tramo": "Coruña/Santiago → Londres",
   "fecha": "Mié 28 oct",
+  "dia": 4,
   "hecho": false,
   "campos": [
     { "label": "Aerolínea", "valor": "" },
@@ -120,17 +121,21 @@ Cada pasaje tiene esta forma:
 }
 ```
 
-Para marcarlo como reservado: poné `"hecho": true` y completá los `valor` de cada campo (los campos vacíos no se muestran). El talón del "pasaje" en el sitio va a mostrar automáticamente esos datos en vez del cartel "Todavía no reservado". `tipo` puede ser `"vuelo"`, `"tren"`, `"tren-auto"` o `"auto"` (define el ícono). Podés agregar o sacar `campos` libremente — el sitio los muestra todos los que tengan `valor`.
+- `dia` es el número de día (según `itinerario.json`) donde va a aparecer la caja completa del pasaje.
+- Algunos ítems (el tren nocturno y el auto de Italia) también tienen `"diaFin"` — el día donde ese pasaje "termina" (llegada del tren, devolución del auto). Ese día muestra una nota más liviana ("Llega hoy: ...", "Devolución hoy: ...") en vez de la caja completa.
+- Para marcarlo como reservado: poné `"hecho": true` y completá los `valor` de cada campo. La caja va a mostrar esos datos automáticamente en lugar de "Pendiente de reservar". `tipo` puede ser `"vuelo"`, `"tren"`, `"tren-auto"` o `"auto"` (define el ícono).
 
 ### `data/hospedajes.json`
 
-Misma lógica, por ciudad/etapa:
+Misma lógica, por ciudad/etapa, pero con `diaInicio` (check-in, muestra la caja completa) y `diaFin` (check-out, muestra la nota liviana "Salís hoy de..."):
 
 ```json
 {
   "id": "londres",
   "titulo": "Londres",
   "fechas": "28 – 31 oct",
+  "diaInicio": 4,
+  "diaFin": 7,
   "hecho": false,
   "campos": [
     { "label": "Alojamiento", "valor": "" },
@@ -143,7 +148,7 @@ Misma lógica, por ciudad/etapa:
 }
 ```
 
-El contador arriba de cada apartado ("X de Y reservados/confirmados") se actualiza solo según cuántos ítems tengan `"hecho": true`.
+Arriba del todo, en el encabezado del sitio, hay una línea que resume el total ("X de Y pasajes reservados · X de Y hospedajes confirmados") — se actualiza sola según cuántos ítems tengan `"hecho": true` en cada archivo.
 
 ## Notas
 

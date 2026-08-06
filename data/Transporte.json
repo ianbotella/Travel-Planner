@@ -8,12 +8,25 @@
       "fecha": "Dom 25 oct, 6am",
       "hecho": false,
       "campos": [
-        { "label": "Aerolínea", "valor": "" },
-        { "label": "N° de vuelo", "valor": "" },
-        { "label": "Horario", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Aerolínea",
+          "valor": ""
+        },
+        {
+          "label": "N° de vuelo",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "dia": 1
     },
     {
       "id": "vuelo-santiago-londres",
@@ -23,12 +36,25 @@
       "fecha": "Mié 28 oct",
       "hecho": false,
       "campos": [
-        { "label": "Aerolínea", "valor": "" },
-        { "label": "N° de vuelo", "valor": "" },
-        { "label": "Horario", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Aerolínea",
+          "valor": ""
+        },
+        {
+          "label": "N° de vuelo",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "dia": 4
     },
     {
       "id": "vuelo-londres-edimburgo",
@@ -38,12 +64,25 @@
       "fecha": "Sáb 31 oct",
       "hecho": false,
       "campos": [
-        { "label": "Aerolínea", "valor": "" },
-        { "label": "N° de vuelo", "valor": "" },
-        { "label": "Horario", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Aerolínea",
+          "valor": ""
+        },
+        {
+          "label": "N° de vuelo",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "dia": 7
     },
     {
       "id": "vuelo-edimburgo-amsterdam",
@@ -53,12 +92,25 @@
       "fecha": "Lun 2 nov",
       "hecho": false,
       "campos": [
-        { "label": "Aerolínea", "valor": "" },
-        { "label": "N° de vuelo", "valor": "" },
-        { "label": "Horario", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Aerolínea",
+          "valor": ""
+        },
+        {
+          "label": "N° de vuelo",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "dia": 9
     },
     {
       "id": "tren-nocturno-amsterdam-chur",
@@ -68,12 +120,26 @@
       "fecha": "Mar 3 nov, 16:38 → Mié 4 nov, 6:48",
       "hecho": false,
       "campos": [
-        { "label": "Compañía", "valor": "" },
-        { "label": "N° de tren / coche-cama", "valor": "" },
-        { "label": "Horario", "valor": "16:38 – 06:48" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Compañía",
+          "valor": ""
+        },
+        {
+          "label": "N° de tren / coche-cama",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": "16:38 – 06:48"
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": "Chequear margen con el Bernina Express del mismo día."
+      "notas": "Chequear margen con el Bernina Express del mismo día.",
+      "dia": 10,
+      "diaFin": 11
     },
     {
       "id": "bernina-express",
@@ -83,11 +149,21 @@
       "fecha": "Mié 4 nov",
       "hecho": false,
       "campos": [
-        { "label": "Asientos reservados", "valor": "" },
-        { "label": "Horario", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Asientos reservados",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": "Suele requerir reserva de asiento aparte del pasaje."
+      "notas": "Suele requerir reserva de asiento aparte del pasaje.",
+      "dia": 11
     },
     {
       "id": "auto-italia",
@@ -97,12 +173,26 @@
       "fecha": "Mié 4 nov → Jue 12 nov",
       "hecho": false,
       "campos": [
-        { "label": "Empresa", "valor": "" },
-        { "label": "N° de reserva", "valor": "" },
-        { "label": "Retiro", "valor": "" },
-        { "label": "Devolución", "valor": "" }
+        {
+          "label": "Empresa",
+          "valor": ""
+        },
+        {
+          "label": "N° de reserva",
+          "valor": ""
+        },
+        {
+          "label": "Retiro",
+          "valor": ""
+        },
+        {
+          "label": "Devolución",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "dia": 11,
+      "diaFin": 19
     },
     {
       "id": "vuelo-roma-santiago",
@@ -112,12 +202,25 @@
       "fecha": "Jue 12 nov",
       "hecho": false,
       "campos": [
-        { "label": "Aerolínea", "valor": "" },
-        { "label": "N° de vuelo", "valor": "" },
-        { "label": "Horario", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Aerolínea",
+          "valor": ""
+        },
+        {
+          "label": "N° de vuelo",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": "Probablemente con escala — confirmar."
+      "notas": "Probablemente con escala — confirmar.",
+      "dia": 19
     },
     {
       "id": "vuelo-jr-vuelta",
@@ -127,12 +230,25 @@
       "fecha": "Sáb 14 nov",
       "hecho": false,
       "campos": [
-        { "label": "Aerolínea", "valor": "" },
-        { "label": "N° de vuelo", "valor": "" },
-        { "label": "Horario", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Aerolínea",
+          "valor": ""
+        },
+        {
+          "label": "N° de vuelo",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "dia": 21
     }
   ]
 }

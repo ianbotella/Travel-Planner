@@ -6,13 +6,30 @@
       "fechas": "25 – 26 oct",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "diaInicio": 1,
+      "diaFin": 2
     },
     {
       "id": "coruna-ida",
@@ -20,13 +37,30 @@
       "fechas": "26 – 28 oct",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "diaInicio": 2,
+      "diaFin": 4
     },
     {
       "id": "londres",
@@ -34,13 +68,30 @@
       "fechas": "28 – 31 oct",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "diaInicio": 4,
+      "diaFin": 7
     },
     {
       "id": "edimburgo",
@@ -48,13 +99,30 @@
       "fechas": "31 oct – 2 nov",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "diaInicio": 7,
+      "diaFin": 9
     },
     {
       "id": "amsterdam",
@@ -62,13 +130,30 @@
       "fechas": "2 – 3 nov",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": "Una sola noche antes del tren nocturno."
+      "notas": "Una sola noche antes del tren nocturno.",
+      "diaInicio": 9,
+      "diaFin": 10
     },
     {
       "id": "milan",
@@ -76,13 +161,30 @@
       "fechas": "4 – 6 nov",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "diaInicio": 11,
+      "diaFin": 13
     },
     {
       "id": "bolonia",
@@ -90,13 +192,30 @@
       "fechas": "6 – 9 nov",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": "Base para Maranello y San Marino (ida y vuelta en el día)."
+      "notas": "Base para Maranello y San Marino (ida y vuelta en el día).",
+      "diaInicio": 13,
+      "diaFin": 16
     },
     {
       "id": "roma",
@@ -104,13 +223,30 @@
       "fechas": "9 – 12 nov",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "diaInicio": 16,
+      "diaFin": 19
     },
     {
       "id": "coruna-vuelta",
@@ -118,13 +254,30 @@
       "fechas": "12 – 13 nov",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "diaInicio": 19,
+      "diaFin": 20
     },
     {
       "id": "madrid-vuelta",
@@ -132,13 +285,30 @@
       "fechas": "13 – 14 nov",
       "hecho": false,
       "campos": [
-        { "label": "Alojamiento", "valor": "" },
-        { "label": "Dirección", "valor": "" },
-        { "label": "Check-in", "valor": "" },
-        { "label": "Check-out", "valor": "" },
-        { "label": "Confirmación", "valor": "" }
+        {
+          "label": "Alojamiento",
+          "valor": ""
+        },
+        {
+          "label": "Dirección",
+          "valor": ""
+        },
+        {
+          "label": "Check-in",
+          "valor": ""
+        },
+        {
+          "label": "Check-out",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
       ],
-      "notas": ""
+      "notas": "",
+      "diaInicio": 20,
+      "diaFin": 21
     }
   ]
 }
