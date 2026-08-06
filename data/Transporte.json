@@ -1,0 +1,138 @@
+{
+  "items": [
+    {
+      "id": "vuelo-jr-ida",
+      "tipo": "vuelo",
+      "titulo": "Vuelo ida — Joaco y Rodri",
+      "tramo": "→ Madrid",
+      "fecha": "Dom 25 oct, 6am",
+      "hecho": false,
+      "campos": [
+        { "label": "Aerolínea", "valor": "" },
+        { "label": "N° de vuelo", "valor": "" },
+        { "label": "Horario", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "vuelo-santiago-londres",
+      "tipo": "vuelo",
+      "titulo": "Vuelo Santiago → Londres",
+      "tramo": "Coruña/Santiago → Londres",
+      "fecha": "Mié 28 oct",
+      "hecho": false,
+      "campos": [
+        { "label": "Aerolínea", "valor": "" },
+        { "label": "N° de vuelo", "valor": "" },
+        { "label": "Horario", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "vuelo-londres-edimburgo",
+      "tipo": "vuelo",
+      "titulo": "Vuelo Londres → Edimburgo",
+      "tramo": "Londres → Edimburgo",
+      "fecha": "Sáb 31 oct",
+      "hecho": false,
+      "campos": [
+        { "label": "Aerolínea", "valor": "" },
+        { "label": "N° de vuelo", "valor": "" },
+        { "label": "Horario", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "vuelo-edimburgo-amsterdam",
+      "tipo": "vuelo",
+      "titulo": "Vuelo Edimburgo → Ámsterdam",
+      "tramo": "Edimburgo → Ámsterdam",
+      "fecha": "Lun 2 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Aerolínea", "valor": "" },
+        { "label": "N° de vuelo", "valor": "" },
+        { "label": "Horario", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "tren-nocturno-amsterdam-chur",
+      "tipo": "tren",
+      "titulo": "Tren nocturno Ámsterdam → Chur",
+      "tramo": "Ámsterdam → Chur",
+      "fecha": "Mar 3 nov, 16:38 → Mié 4 nov, 6:48",
+      "hecho": false,
+      "campos": [
+        { "label": "Compañía", "valor": "" },
+        { "label": "N° de tren / coche-cama", "valor": "" },
+        { "label": "Horario", "valor": "16:38 – 06:48" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": "Chequear margen con el Bernina Express del mismo día."
+    },
+    {
+      "id": "bernina-express",
+      "tipo": "tren",
+      "titulo": "Bernina Express",
+      "tramo": "Chur → Tirano",
+      "fecha": "Mié 4 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Asientos reservados", "valor": "" },
+        { "label": "Horario", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": "Suele requerir reserva de asiento aparte del pasaje."
+    },
+    {
+      "id": "auto-italia",
+      "tipo": "auto",
+      "titulo": "Alquiler de auto — Italia",
+      "tramo": "Retiro en Tirano · Devolución en Roma",
+      "fecha": "Mié 4 nov → Jue 12 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Empresa", "valor": "" },
+        { "label": "N° de reserva", "valor": "" },
+        { "label": "Retiro", "valor": "" },
+        { "label": "Devolución", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "vuelo-roma-santiago",
+      "tipo": "vuelo",
+      "titulo": "Vuelo Roma → Santiago",
+      "tramo": "Roma → Santiago",
+      "fecha": "Jue 12 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Aerolínea", "valor": "" },
+        { "label": "N° de vuelo", "valor": "" },
+        { "label": "Horario", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": "Probablemente con escala — confirmar."
+    },
+    {
+      "id": "vuelo-jr-vuelta",
+      "tipo": "vuelo",
+      "titulo": "Vuelo vuelta — Joaco y Rodri",
+      "tramo": "Madrid →",
+      "fecha": "Sáb 14 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Aerolínea", "valor": "" },
+        { "label": "N° de vuelo", "valor": "" },
+        { "label": "Horario", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    }
+  ]
+}

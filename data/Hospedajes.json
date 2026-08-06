@@ -1,0 +1,144 @@
+{
+  "items": [
+    {
+      "id": "madrid-ida",
+      "titulo": "Madrid",
+      "fechas": "25 – 26 oct",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "coruna-ida",
+      "titulo": "Coruña (ida)",
+      "fechas": "26 – 28 oct",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "londres",
+      "titulo": "Londres",
+      "fechas": "28 – 31 oct",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "edimburgo",
+      "titulo": "Edimburgo",
+      "fechas": "31 oct – 2 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "amsterdam",
+      "titulo": "Ámsterdam",
+      "fechas": "2 – 3 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": "Una sola noche antes del tren nocturno."
+    },
+    {
+      "id": "milan",
+      "titulo": "Milán",
+      "fechas": "4 – 6 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "bolonia",
+      "titulo": "Bolonia",
+      "fechas": "6 – 9 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": "Base para Maranello y San Marino (ida y vuelta en el día)."
+    },
+    {
+      "id": "roma",
+      "titulo": "Roma",
+      "fechas": "9 – 12 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "coruna-vuelta",
+      "titulo": "Coruña (vuelta)",
+      "fechas": "12 – 13 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    },
+    {
+      "id": "madrid-vuelta",
+      "titulo": "Madrid (vuelta)",
+      "fechas": "13 – 14 nov",
+      "hecho": false,
+      "campos": [
+        { "label": "Alojamiento", "valor": "" },
+        { "label": "Dirección", "valor": "" },
+        { "label": "Check-in", "valor": "" },
+        { "label": "Check-out", "valor": "" },
+        { "label": "Confirmación", "valor": "" }
+      ],
+      "notas": ""
+    }
+  ]
+}
