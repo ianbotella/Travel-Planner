@@ -3,10 +3,10 @@
    en https://giscus.app apuntando a este repo.
    ============================================================== */
 const GISCUS_CONFIG = {
-  repo: "TU-USUARIO/TU-REPO",
-  repoId: "REPO_ID_AQUI",
+  repo: "ianbotella/Travel-Planner",
+  repoId: "R_kgDOTvoYAQ",
   category: "Itinerario",
-  categoryId: "CATEGORY_ID_AQUI",
+  categoryId: "DIC_kwDOTvoYAc4DCyYt",
   mapping: "specific", // cada día es un "término" propio dentro del mismo repo
   lang: "es"
 };
