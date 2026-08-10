@@ -6,11 +6,11 @@
       "titulo": "Vuelo ida — Joaco y Rodri",
       "tramo": "Buenos Aires → Madrid",
       "fecha": "Dom 25 oct, 6am",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "Iberia"
         },
         {
           "label": "N° de vuelo",
@@ -18,14 +18,14 @@
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "5:40"
         },
         {
           "label": "Confirmación",
           "valor": ""
         }
       ],
-      "notas": "",
+      "notas": "Llegan a la terminal 4S",
       "dia": 1
     },
     {
