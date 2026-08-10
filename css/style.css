@@ -261,6 +261,57 @@ a { color: inherit; }
 }
 
 /* ============================================================
+   Links para reservar
+   ============================================================ */
+.links {
+  max-width: var(--max-w);
+  margin: 1.75rem auto 0;
+  padding: 0 1.25rem;
+}
+
+.links__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--stamp-ink);
+  margin: 0 0 0.75rem;
+}
+
+.links__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.6rem;
+}
+
+.links__list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px dashed var(--stamp);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.8rem;
+  transition: background-color 0.15s ease;
+}
+
+.links__list a:hover { background: rgba(201, 138, 44, 0.1); }
+
+.links__list strong { font-size: 0.9rem; }
+
+.links__list span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
    Pending panel
    ============================================================ */
 .pending {
