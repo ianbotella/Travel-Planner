@@ -21,31 +21,8 @@
     <p class="masthead__sub" id="viaje-subtitulo"></p>
     <p class="masthead__crew" id="viaje-crew"></p>
   <p class="masthead__status" id="viaje-status"></p>
-  <button type="button" class="masthead__settings" id="settings-open-btn">⚙ Guardar cambios</button>
   </div>
 </header>
-
-<div class="tp-modal" id="settings-modal" hidden>
-  <div class="tp-modal__backdrop" data-close></div>
-  <div class="tp-modal__panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
-    <h2 id="settings-title">Acceso para guardar cambios</h2>
-    <p>Para que los datos que cargues en cada reserva se guarden en el repo (y se vean desde cualquier dispositivo), necesitás un <em>Personal Access Token</em> de GitHub con permiso de escritura sobre este repo.</p>
-    <ol>
-      <li>Andá a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
-      <li>Elegí "Only select repositories" → <code>Travel-Planner</code>.</li>
-      <li>En "Repository permissions" → <strong>Contents: Read and write</strong>.</li>
-      <li>Generá el token y pegalo acá abajo.</li>
-    </ol>
-    <input type="password" id="settings-token-input" placeholder="github_pat_..." autocomplete="off">
-    <div class="tp-modal__actions">
-      <button type="button" id="settings-save-btn">Guardar token</button>
-      <button type="button" id="settings-clear-btn">Borrar token</button>
-      <button type="button" id="settings-close-btn" data-close>Cerrar</button>
-    </div>
-    <p class="tp-modal__note" id="settings-token-status"></p>
-    <p class="tp-modal__note">El token se guarda solo en este navegador (localStorage) y se usa únicamente para hablar directo con la API de GitHub — nunca se envía a ningún otro lado.</p>
-  </div>
-</div>
 
 <nav class="blocknav" id="blocknav" aria-label="Tramos del viaje">
   <!-- se completa por JS -->
@@ -53,14 +30,32 @@
 
 <section class="pending" id="pending-panel" hidden>
   <h2 class="pending__title">Pendientes por resolver</h2>
-  <ul class="pending__list" id="pending-list">
-    <!-- se completa por JS -->
-  </ul>
+
+  <div id="pending-reservas-block" hidden>
+    <h3 class="pending__subtitle">Reservas</h3>
+    <ul class="pending__list pending__list--reservas" id="pending-reservas-list">
+      <!-- se completa por JS -->
+    </ul>
+  </div>
+
+  <div id="pending-avisos-block" hidden>
+    <h3 class="pending__subtitle">Puntos abiertos</h3>
+    <ul class="pending__list pending__list--avisos" id="pending-avisos-list">
+      <!-- se completa por JS -->
+    </ul>
+  </div>
 </section>
 
 <main class="timeline" id="timeline">
   <!-- se completa por JS: secciones por bloque, cada una con tarjetas de día -->
 </main>
+
+<section class="completados" id="completados-panel" hidden>
+  <h2 class="completados__title">Completados</h2>
+  <ul class="completados__list" id="completados-list">
+    <!-- se completa por JS -->
+  </ul>
+</section>
 
 <footer class="sitefoot">
   <p>Editá <code>data/itinerario.json</code> para actualizar el itinerario. Los comentarios se guardan como GitHub Discussions del repo.</p>

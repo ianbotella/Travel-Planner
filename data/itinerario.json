@@ -2,36 +2,208 @@
   "viaje": {
     "titulo": "21 días — España, Reino Unido, Ámsterdam/Suiza, Italia",
     "subtitulo": "25 de octubre – 14 de noviembre",
-    "integrantes": ["Ian", "Rocio", "Joaco", "Rodri"]
+    "integrantes": [
+      "Ian",
+      "Rocio",
+      "Joaco",
+      "Rodri"
+    ]
   },
   "bloques": [
-    { "id": "espana", "nombre": "España", "color": "#6B4226" },
-    { "id": "reino-unido", "nombre": "Reino Unido", "color": "#2B4C7E" },
-    { "id": "amsterdam-suiza", "nombre": "Ámsterdam / Suiza", "color": "#3E7C59" },
-    { "id": "italia", "nombre": "Italia", "color": "#A6373F" },
-    { "id": "vuelta", "nombre": "Vuelta", "color": "#5C5470" }
+    {
+      "id": "espana",
+      "nombre": "España",
+      "color": "#6B4226"
+    },
+    {
+      "id": "reino-unido",
+      "nombre": "Reino Unido",
+      "color": "#2B4C7E"
+    },
+    {
+      "id": "amsterdam-suiza",
+      "nombre": "Ámsterdam / Suiza",
+      "color": "#3E7C59"
+    },
+    {
+      "id": "italia",
+      "nombre": "Italia",
+      "color": "#A6373F"
+    },
+    {
+      "id": "vuelta",
+      "nombre": "Vuelta",
+      "color": "#5C5470"
+    }
   ],
   "dias": [
-    { "dia": 1, "fecha": "Dom 25 oct", "bloque": "espana", "tramo": "Madrid", "medio": "quieto", "notas": "Día completo en Madrid. Joaco y Rodri llegan 6am." },
-    { "dia": 2, "fecha": "Lun 26 oct", "bloque": "espana", "tramo": "Madrid → Coruña", "medio": "auto", "notas": "Salida en auto (Clio propio) ~13:00." },
-    { "dia": 3, "fecha": "Mar 27 oct", "bloque": "espana", "tramo": "Coruña", "medio": "quieto", "notas": "Día completo en Coruña." },
-    { "dia": 4, "fecha": "Mié 28 oct", "bloque": "reino-unido", "tramo": "Coruña → Santiago → Londres", "medio": "vuelo", "notas": "Vuelo desde Santiago. Llegada a Londres por la tarde." },
-    { "dia": 5, "fecha": "Jue 29 oct", "bloque": "reino-unido", "tramo": "Londres", "medio": "quieto", "notas": "Día completo en Londres." },
-    { "dia": 6, "fecha": "Vie 30 oct", "bloque": "reino-unido", "tramo": "Londres", "medio": "quieto", "notas": "Día completo en Londres." },
-    { "dia": 7, "fecha": "Sáb 31 oct", "bloque": "reino-unido", "tramo": "Londres → Edimburgo", "medio": "vuelo", "notas": "Vuelo por la mañana." },
-    { "dia": 8, "fecha": "Dom 1 nov", "bloque": "reino-unido", "tramo": "Edimburgo", "medio": "quieto", "notas": "Día completo en Edimburgo." },
-    { "dia": 9, "fecha": "Lun 2 nov", "bloque": "amsterdam-suiza", "tramo": "Edimburgo → Ámsterdam", "medio": "vuelo", "notas": "Vuelo por la mañana.", "aviso": "Ámsterdam quedó como el tramo más corto del viaje — prácticamente 1 día. Si alguien tiene sugerencias para aprovecharlo, este es el lugar." },
-    { "dia": 10, "fecha": "Mar 3 nov", "bloque": "amsterdam-suiza", "tramo": "Ámsterdam → Chur", "medio": "tren", "notas": "Tren nocturno, salida 16:38, llegada miércoles 6:48.", "aviso": "Falta chequear el enlace entre la llegada del tren nocturno a Chur (6:48) y la salida del Bernina Express ese mismo día." },
-    { "dia": 11, "fecha": "Mié 4 nov", "bloque": "amsterdam-suiza", "tramo": "Chur → Bernina Express → Tirano → Milán", "medio": "tren-auto", "notas": "Llegada a Tirano ~13:00, alquiler de auto, llegada a Milán por la tarde." },
-    { "dia": 12, "fecha": "Jue 5 nov", "bloque": "italia", "tramo": "Milán", "medio": "quieto", "notas": "Día completo en Milán." },
-    { "dia": 13, "fecha": "Vie 6 nov", "bloque": "italia", "tramo": "Milán → Bolonia", "medio": "auto", "notas": "Salida 10:00." },
-    { "dia": 14, "fecha": "Sáb 7 nov", "bloque": "italia", "tramo": "Bolonia → Maranello", "medio": "auto", "notas": "Ida y vuelta en el día." },
-    { "dia": 15, "fecha": "Dom 8 nov", "bloque": "italia", "tramo": "Bolonia → San Marino", "medio": "auto", "notas": "Ida y vuelta en el día." },
-    { "dia": 16, "fecha": "Lun 9 nov", "bloque": "italia", "tramo": "Bolonia → Florencia → Roma", "medio": "auto", "notas": "Salida 9:00, pasan por Florencia de camino a Roma." },
-    { "dia": 17, "fecha": "Mar 10 nov", "bloque": "italia", "tramo": "Roma", "medio": "quieto", "notas": "Día completo en Roma." },
-    { "dia": 18, "fecha": "Mié 11 nov", "bloque": "italia", "tramo": "Roma", "medio": "quieto", "notas": "Día completo en Roma." },
-    { "dia": 19, "fecha": "Jue 12 nov", "bloque": "vuelta", "tramo": "Roma → Santiago", "medio": "vuelo", "notas": "Vuelo de vuelta. Devuelven el auto alquilado en Italia. Recuperan las valijas grandes que Joaco y Rodri dejaron en Coruña al principio.", "aviso": "El vuelo Roma → Santiago probablemente tenga escala — a confirmar." },
-    { "dia": 20, "fecha": "Vie 13 nov", "bloque": "vuelta", "tramo": "Coruña → Madrid", "medio": "auto", "notas": "En el Clio, salida por la tarde.", "aviso": "El manejo Coruña–Madrid (~6h) es el día antes del vuelo de Joaco y Rodri, con poco margen." },
-    { "dia": 21, "fecha": "Sáb 14 nov", "bloque": "vuelta", "tramo": "Madrid", "medio": "vuelo", "notas": "Vuelo de vuelta de Joaco y Rodri." }
+    {
+      "dia": 1,
+      "fecha": "Dom 25 oct",
+      "bloque": "espana",
+      "tramo": "Madrid",
+      "medio": "quieto",
+      "notas": "Día completo en Madrid. Joaco y Rodri llegan 6am."
+    },
+    {
+      "dia": 2,
+      "fecha": "Lun 26 oct",
+      "bloque": "espana",
+      "tramo": "Madrid → Coruña",
+      "medio": "auto",
+      "notas": "Salida en auto (Clio propio) ~13:00."
+    },
+    {
+      "dia": 3,
+      "fecha": "Mar 27 oct",
+      "bloque": "espana",
+      "tramo": "Coruña",
+      "medio": "quieto",
+      "notas": "Día completo en Coruña."
+    },
+    {
+      "dia": 4,
+      "fecha": "Mié 28 oct",
+      "bloque": "reino-unido",
+      "tramo": "Coruña → Santiago → Londres",
+      "medio": "vuelo",
+      "notas": "Vuelo desde Santiago. Llegada a Londres por la tarde."
+    },
+    {
+      "dia": 5,
+      "fecha": "Jue 29 oct",
+      "bloque": "reino-unido",
+      "tramo": "Londres",
+      "medio": "quieto",
+      "notas": "Día completo en Londres."
+    },
+    {
+      "dia": 6,
+      "fecha": "Vie 30 oct",
+      "bloque": "reino-unido",
+      "tramo": "Londres",
+      "medio": "quieto",
+      "notas": "Día completo en Londres."
+    },
+    {
+      "dia": 7,
+      "fecha": "Sáb 31 oct",
+      "bloque": "reino-unido",
+      "tramo": "Londres → Edimburgo",
+      "medio": "vuelo",
+      "notas": "Vuelo por la mañana."
+    },
+    {
+      "dia": 8,
+      "fecha": "Dom 1 nov",
+      "bloque": "reino-unido",
+      "tramo": "Edimburgo",
+      "medio": "quieto",
+      "notas": "Día completo en Edimburgo."
+    },
+    {
+      "dia": 9,
+      "fecha": "Lun 2 nov",
+      "bloque": "amsterdam-suiza",
+      "tramo": "Edimburgo → Ámsterdam",
+      "medio": "vuelo",
+      "notas": "Vuelo por la mañana."
+    },
+    {
+      "dia": 10,
+      "fecha": "Mar 3 nov",
+      "bloque": "amsterdam-suiza",
+      "tramo": "Ámsterdam → Chur",
+      "medio": "tren",
+      "notas": "Tren nocturno, salida 16:38, llegada miércoles 6:48."
+    },
+    {
+      "dia": 11,
+      "fecha": "Mié 4 nov",
+      "bloque": "amsterdam-suiza",
+      "tramo": "Chur → Bernina Express → Tirano → Milán",
+      "medio": "tren-auto",
+      "notas": "Llegada a Tirano ~13:00, alquiler de auto, llegada a Milán por la tarde."
+    },
+    {
+      "dia": 12,
+      "fecha": "Jue 5 nov",
+      "bloque": "italia",
+      "tramo": "Milán",
+      "medio": "quieto",
+      "notas": "Día completo en Milán."
+    },
+    {
+      "dia": 13,
+      "fecha": "Vie 6 nov",
+      "bloque": "italia",
+      "tramo": "Milán → Bolonia",
+      "medio": "auto",
+      "notas": "Salida 10:00."
+    },
+    {
+      "dia": 14,
+      "fecha": "Sáb 7 nov",
+      "bloque": "italia",
+      "tramo": "Bolonia → Maranello",
+      "medio": "auto",
+      "notas": "Ida y vuelta en el día."
+    },
+    {
+      "dia": 15,
+      "fecha": "Dom 8 nov",
+      "bloque": "italia",
+      "tramo": "Bolonia → San Marino",
+      "medio": "auto",
+      "notas": "Ida y vuelta en el día."
+    },
+    {
+      "dia": 16,
+      "fecha": "Lun 9 nov",
+      "bloque": "italia",
+      "tramo": "Bolonia → Florencia → Roma",
+      "medio": "auto",
+      "notas": "Salida 9:00, pasan por Florencia de camino a Roma."
+    },
+    {
+      "dia": 17,
+      "fecha": "Mar 10 nov",
+      "bloque": "italia",
+      "tramo": "Roma",
+      "medio": "quieto",
+      "notas": "Día completo en Roma."
+    },
+    {
+      "dia": 18,
+      "fecha": "Mié 11 nov",
+      "bloque": "italia",
+      "tramo": "Roma",
+      "medio": "quieto",
+      "notas": "Día completo en Roma."
+    },
+    {
+      "dia": 19,
+      "fecha": "Jue 12 nov",
+      "bloque": "vuelta",
+      "tramo": "Roma → Santiago",
+      "medio": "vuelo",
+      "notas": "Vuelo de vuelta. Devuelven el auto alquilado en Italia. Recuperan las valijas grandes que Joaco y Rodri dejaron en Coruña al principio."
+    },
+    {
+      "dia": 20,
+      "fecha": "Vie 13 nov",
+      "bloque": "vuelta",
+      "tramo": "Coruña → Madrid",
+      "medio": "auto",
+      "notas": "En el Clio, salida por la tarde."
+    },
+    {
+      "dia": 21,
+      "fecha": "Sáb 14 nov",
+      "bloque": "vuelta",
+      "tramo": "Madrid",
+      "medio": "vuelo",
+      "notas": "Vuelo de vuelta de Joaco y Rodri."
+    }
   ]
 }
