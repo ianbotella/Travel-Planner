@@ -228,11 +228,11 @@
       "titulo": "Vuelo vuelta — Joaco y Rodri",
       "tramo": "Madrid → Buenos Aires",
       "fecha": "Sáb 14 nov",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "Iberia"
         },
         {
           "label": "N° de vuelo",
@@ -240,14 +240,14 @@
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "8:45"
         },
         {
           "label": "Confirmación",
           "valor": ""
         }
       ],
-      "notas": "",
+      "notas": "Salida de Terminal 4S",
       "dia": 21
     }
   ]
