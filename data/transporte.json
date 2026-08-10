@@ -195,6 +195,90 @@
       "diaFin": 19
     },
     {
+      "id": "experiencia-maranello-ian",
+      "tipo": "experiencia",
+      "titulo": "Experiencia de conducción — Maranello (Ian)",
+      "tramo": "Bolonia → Maranello (ida y vuelta)",
+      "fecha": "Sáb 7 nov",
+      "hecho": false,
+      "campos": [
+        {
+          "label": "Experiencia",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "N° de reserva",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
+      ],
+      "notas": "Reservar con anticipación en pushstart.it/es/coches/ — requiere turno previo.",
+      "dia": 14
+    },
+    {
+      "id": "experiencia-maranello-joaco",
+      "tipo": "experiencia",
+      "titulo": "Experiencia de conducción — Maranello (Joaco)",
+      "tramo": "Bolonia → Maranello (ida y vuelta)",
+      "fecha": "Sáb 7 nov",
+      "hecho": false,
+      "campos": [
+        {
+          "label": "Experiencia",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "N° de reserva",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
+      ],
+      "notas": "Reservar con anticipación en pushstart.it/es/coches/ — requiere turno previo.",
+      "dia": 14
+    },
+    {
+      "id": "experiencia-maranello-rodri",
+      "tipo": "experiencia",
+      "titulo": "Experiencia de conducción — Maranello (Rodri)",
+      "tramo": "Bolonia → Maranello (ida y vuelta)",
+      "fecha": "Sáb 7 nov",
+      "hecho": false,
+      "campos": [
+        {
+          "label": "Experiencia",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "N° de reserva",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        }
+      ],
+      "notas": "Reservar con anticipación en pushstart.it/es/coches/ — requiere turno previo.",
+      "dia": 14
+    },
+    {
       "id": "vuelo-roma-santiago",
       "tipo": "vuelo",
       "titulo": "Vuelo Roma → Santiago",
