@@ -4,7 +4,7 @@
       "id": "vuelo-jr-ida",
       "tipo": "vuelo",
       "titulo": "Vuelo ida — Joaco y Rodri",
-      "tramo": "→ Madrid",
+      "tramo": "Buenos Aires → Madrid",
       "fecha": "Dom 25 oct, 6am",
       "hecho": false,
       "campos": [
@@ -226,7 +226,7 @@
       "id": "vuelo-jr-vuelta",
       "tipo": "vuelo",
       "titulo": "Vuelo vuelta — Joaco y Rodri",
-      "tramo": "Madrid →",
+      "tramo": "Madrid → Buenos Aires",
       "fecha": "Sáb 14 nov",
       "hecho": false,
       "campos": [

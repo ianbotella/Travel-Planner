@@ -32,37 +32,6 @@
       "diaFin": 2
     },
     {
-      "id": "coruna-ida",
-      "titulo": "Coruña (ida)",
-      "fechas": "26 – 28 oct",
-      "hecho": false,
-      "campos": [
-        {
-          "label": "Alojamiento",
-          "valor": ""
-        },
-        {
-          "label": "Dirección",
-          "valor": ""
-        },
-        {
-          "label": "Check-in",
-          "valor": ""
-        },
-        {
-          "label": "Check-out",
-          "valor": ""
-        },
-        {
-          "label": "Confirmación",
-          "valor": ""
-        }
-      ],
-      "notas": "",
-      "diaInicio": 2,
-      "diaFin": 4
-    },
-    {
       "id": "londres",
       "titulo": "Londres",
       "fechas": "28 – 31 oct",
@@ -247,37 +216,6 @@
       "notas": "",
       "diaInicio": 16,
       "diaFin": 19
-    },
-    {
-      "id": "coruna-vuelta",
-      "titulo": "Coruña (vuelta)",
-      "fechas": "12 – 13 nov",
-      "hecho": false,
-      "campos": [
-        {
-          "label": "Alojamiento",
-          "valor": ""
-        },
-        {
-          "label": "Dirección",
-          "valor": ""
-        },
-        {
-          "label": "Check-in",
-          "valor": ""
-        },
-        {
-          "label": "Check-out",
-          "valor": ""
-        },
-        {
-          "label": "Confirmación",
-          "valor": ""
-        }
-      ],
-      "notas": "",
-      "diaInicio": 19,
-      "diaFin": 20
     },
     {
       "id": "madrid-vuelta",
