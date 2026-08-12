@@ -313,6 +313,190 @@ a { color: inherit; }
 }
 
 /* ============================================================
+   Presupuesto estimado
+   ============================================================ */
+.presupuesto {
+  max-width: var(--max-w);
+  margin: 1.75rem auto 0;
+  padding: 0 1.25rem;
+}
+
+.presupuesto__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--stamp-ink);
+  margin: 0 0 0.75rem;
+}
+
+.presupuesto__subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin: 1.1rem 0 0.5rem;
+}
+
+.presupuesto__comida {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  background: var(--paper-raised);
+  border: 1px dashed var(--logistica);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.9rem;
+}
+
+.presupuesto__comida label {
+  display: grid;
+  gap: 0.2rem;
+  flex: 1 1 240px;
+}
+
+.presupuesto__comida span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.presupuesto__comida input {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.presupuesto__comida button,
+.presupuesto__gasto-form button {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--logistica);
+  background: var(--logistica);
+  color: #fff;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.presupuesto__status {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.presupuesto__totales {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.6rem;
+}
+
+.presupuesto__totales li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.presupuesto__totales li span {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--logistica);
+}
+
+.presupuesto__gastos-list {
+  list-style: none;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.presupuesto__gastos-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.gasto__persona {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  flex: 0 0 auto;
+}
+
+.gasto__desc { flex: 1 1 auto; min-width: 0; }
+
+.gasto__monto {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--logistica);
+  flex: 0 0 auto;
+}
+
+.gasto__eliminar {
+  flex: 0 0 auto;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+}
+
+.gasto__eliminar:hover { color: var(--stamp-ink); }
+
+.presupuesto__gasto-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.presupuesto__gasto-form select,
+.presupuesto__gasto-form input {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.presupuesto__gasto-form input[type="text"]:nth-of-type(1) { flex: 1 1 160px; }
+.presupuesto__gasto-form input[type="text"]:nth-of-type(2) { flex: 0 1 120px; }
+
+.gasto__empty {
+  font-style: italic;
+  color: var(--ink-soft);
+  background: transparent !important;
+  border: 1px dashed var(--line) !important;
+}
+
+/* ============================================================
    Pending panel
    ============================================================ */
 .pending {

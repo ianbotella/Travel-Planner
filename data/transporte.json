@@ -23,10 +23,18 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "Llegan a la terminal 4S",
-      "dia": 1
+      "dia": 1,
+      "personas": [
+        "Joaco",
+        "Rodri"
+      ]
     },
     {
       "id": "vuelo-santiago-londres",
@@ -50,6 +58,10 @@
         },
         {
           "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],
@@ -79,6 +91,10 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "",
@@ -106,6 +122,10 @@
         },
         {
           "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],
@@ -135,6 +155,10 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "Chequear margen con el Bernina Express del mismo día.",
@@ -159,6 +183,10 @@
         },
         {
           "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],
@@ -187,6 +215,10 @@
         },
         {
           "label": "Devolución",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],
@@ -217,10 +249,17 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "Reservar con anticipación en pushstart.it/es/coches/ — requiere turno previo.",
-      "dia": 14
+      "dia": 14,
+      "personas": [
+        "Ian"
+      ]
     },
     {
       "id": "experiencia-maranello-joaco",
@@ -245,10 +284,17 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "Reservar con anticipación en pushstart.it/es/coches/ — requiere turno previo.",
-      "dia": 14
+      "dia": 14,
+      "personas": [
+        "Joaco"
+      ]
     },
     {
       "id": "experiencia-maranello-rodri",
@@ -273,10 +319,17 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "Reservar con anticipación en pushstart.it/es/coches/ — requiere turno previo.",
-      "dia": 14
+      "dia": 14,
+      "personas": [
+        "Rodri"
+      ]
     },
     {
       "id": "vuelo-roma-santiago",
@@ -300,6 +353,10 @@
         },
         {
           "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],
@@ -329,10 +386,18 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "Salida de Terminal 4S",
-      "dia": 21
+      "dia": 21,
+      "personas": [
+        "Joaco",
+        "Rodri"
+      ]
     }
   ]
 }

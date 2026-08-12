@@ -25,6 +25,10 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "",
@@ -55,6 +59,10 @@
         },
         {
           "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],
@@ -87,6 +95,10 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "",
@@ -117,6 +129,10 @@
         },
         {
           "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],
@@ -149,6 +165,10 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "",
@@ -179,6 +199,10 @@
         },
         {
           "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],
@@ -211,6 +235,10 @@
         {
           "label": "Confirmación",
           "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
         }
       ],
       "notas": "",
@@ -241,6 +269,10 @@
         },
         {
           "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
           "valor": ""
         }
       ],

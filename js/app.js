@@ -41,21 +41,23 @@ const PASAJE_FIN_VERBO = {
 
 /* Estado en memoria de los datos cargados, para poder actualizarlos
    tras un guardado sin tener que releer los JSON */
-const STATE = { data: null, transporte: null, hospedajes: null, lookups: null };
+const STATE = { data: null, transporte: null, hospedajes: null, presupuesto: null, lookups: null };
 
 const GH_TOKEN_KEY = "tp_gh_token";
 const REPO_OWNER = location.hostname.endsWith(".github.io") ? location.hostname.split(".")[0] : "ianbotella";
 const REPO_NAME = location.pathname.split("/").filter(Boolean)[0] || "Travel-Planner";
 
 async function init() {
-  const [itinerarioRes, transporteRes, hospedajesRes] = await Promise.all([
+  const [itinerarioRes, transporteRes, hospedajesRes, presupuestoRes] = await Promise.all([
     fetch("data/itinerario.json"),
     fetch("data/transporte.json"),
-    fetch("data/hospedajes.json")
+    fetch("data/hospedajes.json"),
+    fetch("data/presupuesto.json")
   ]);
   STATE.data = await itinerarioRes.json();
   STATE.transporte = await transporteRes.json();
   STATE.hospedajes = await hospedajesRes.json();
+  STATE.presupuesto = await presupuestoRes.json();
   STATE.lookups = buildLookups(STATE.transporte.items, STATE.hospedajes.items);
 
   renderMasthead(STATE.data.viaje);
@@ -69,6 +71,8 @@ async function init() {
   setupSettingsModal();
   setupHashOpen();
   openTargetLogibox();
+  setupPresupuesto();
+  renderPresupuesto();
 }
 
 /* Al navegar a un link de la checklist de pendientes/completados (#logibox-...)
@@ -84,10 +88,11 @@ function setupHashOpen() {
 }
 
 /* Vuelve a pintar los paneles que dependen de qué reservas están hechas
-   (checklist de pendientes, completados y el contador del header) */
+   (checklist de pendientes, completados, el contador del header y el presupuesto) */
 function refreshReservaPanels() {
   renderPending(STATE.data, STATE.transporte.items, STATE.hospedajes.items);
   renderCompletados(STATE.transporte.items, STATE.hospedajes.items);
+  renderPresupuesto();
   renderStatus(STATE.transporte.items, STATE.hospedajes.items);
 }
 
@@ -604,6 +609,219 @@ function escapeHtml(str) {
   const div = document.createElement("div");
   div.textContent = str ?? "";
   return div.innerHTML;
+}
+
+/* ==============================================================
+   Presupuesto estimado
+   ============================================================== */
+
+/* Convierte texto ingresado a mano ("1.200", "1200,50") en un número.
+   Cualquier cosa no numérica cuenta como 0. */
+function parseMonto(str) {
+  if (str === null || str === undefined || str === "") return 0;
+  const cleaned = String(str).replace(/[^\d,.-]/g, "").replace(",", ".");
+  const n = parseFloat(cleaned);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function formatEUR(n) {
+  return n.toLocaleString("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+}
+
+function getCosto(item) {
+  const campo = (item.campos || []).find((c) => c.label === "Precio (€)");
+  return campo ? parseMonto(campo.valor) : 0;
+}
+
+/* Reparte comida + reservas + gastos individuales entre los integrantes.
+   Una reserva sin "personas" se asume compartida entre todos; si tiene
+   "personas", su costo se reparte solo entre esa gente (ej. Maranello). */
+function computeBudget() {
+  const integrantes = STATE.data.viaje.integrantes;
+  const totals = Object.fromEntries(integrantes.map((p) => [p, 0]));
+
+  const comidaTotal = parseMonto(STATE.presupuesto.comida && STATE.presupuesto.comida.total);
+  integrantes.forEach((p) => {
+    totals[p] += comidaTotal / integrantes.length;
+  });
+
+  [...STATE.transporte.items, ...STATE.hospedajes.items].forEach((item) => {
+    const costo = getCosto(item);
+    if (!costo) return;
+    const personas = item.personas && item.personas.length ? item.personas : integrantes;
+    const share = costo / personas.length;
+    personas.forEach((p) => {
+      if (totals[p] !== undefined) totals[p] += share;
+    });
+  });
+
+  (STATE.presupuesto.gastosIndividuales || []).forEach((g) => {
+    if (totals[g.persona] !== undefined) totals[g.persona] += parseMonto(g.monto);
+  });
+
+  return totals;
+}
+
+function renderPresupuesto() {
+  const comidaInput = document.getElementById("presupuesto-comida-input");
+  if (comidaInput && document.activeElement !== comidaInput) {
+    comidaInput.value = (STATE.presupuesto.comida && STATE.presupuesto.comida.total) || "";
+  }
+
+  const totals = computeBudget();
+  const integrantes = STATE.data.viaje.integrantes;
+  const totalesList = document.getElementById("presupuesto-totales");
+  if (totalesList) {
+    totalesList.innerHTML = integrantes
+      .map((p) => `<li><strong>${escapeHtml(p)}</strong><span>${formatEUR(totals[p])}</span></li>`)
+      .join("");
+  }
+
+  const gastosList = document.getElementById("gastos-individuales-list");
+  if (gastosList) {
+    const gastos = STATE.presupuesto.gastosIndividuales || [];
+    gastosList.innerHTML = gastos.length
+      ? gastos
+          .map(
+            (g) => `
+        <li data-gasto-id="${g.id}">
+          <span class="gasto__persona">${escapeHtml(g.persona)}</span>
+          <span class="gasto__desc">${escapeHtml(g.descripcion)}</span>
+          <span class="gasto__monto">${formatEUR(parseMonto(g.monto))}</span>
+          <button type="button" class="gasto__eliminar" data-gasto-id="${g.id}" aria-label="Eliminar gasto">×</button>
+        </li>`
+          )
+          .join("")
+      : `<li class="gasto__empty">Sin gastos individuales cargados.</li>`;
+  }
+}
+
+/* Guarda cualquier cambio a data/presupuesto.json vía la API de GitHub,
+   siguiendo el mismo patrón GET (sha + contenido actual) → mutar → PUT
+   que usa guardarReserva, para no pisar cambios de otra persona. */
+async function guardarPresupuestoJson(mutate, statusEl) {
+  const token = getGhToken();
+  if (!token) {
+    if (statusEl) statusEl.textContent = "Configurá tu token para poder guardar (botón ⚙ arriba).";
+    openSettingsModal();
+    return false;
+  }
+
+  if (statusEl) statusEl.textContent = "Guardando…";
+
+  try {
+    const path = "data/presupuesto.json";
+    const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`;
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json"
+    };
+
+    const getRes = await fetch(apiUrl, { headers });
+    if (!getRes.ok) throw new Error(`No se pudo leer presupuesto.json (HTTP ${getRes.status})`);
+    const fileMeta = await getRes.json();
+    const fileContent = JSON.parse(b64DecodeUnicode(fileMeta.content));
+
+    mutate(fileContent);
+
+    const putRes = await fetch(apiUrl, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify({
+        message: "Actualizar presupuesto",
+        content: b64EncodeUnicode(JSON.stringify(fileContent, null, 2) + "\n"),
+        sha: fileMeta.sha
+      })
+    });
+    if (!putRes.ok) {
+      const errBody = await putRes.json().catch(() => ({}));
+      throw new Error(errBody.message || `No se pudo guardar (HTTP ${putRes.status})`);
+    }
+
+    STATE.presupuesto = fileContent;
+    renderPresupuesto();
+    if (statusEl) statusEl.textContent = "";
+    return true;
+  } catch (err) {
+    console.error(err);
+    if (statusEl) statusEl.textContent = `Error: ${err.message}`;
+    return false;
+  }
+}
+
+function guardarComida(total, statusEl) {
+  return guardarPresupuestoJson((data) => {
+    data.comida = data.comida || {};
+    data.comida.total = total;
+  }, statusEl);
+}
+
+function agregarGastoIndividual(persona, descripcion, monto, statusEl) {
+  return guardarPresupuestoJson((data) => {
+    data.gastosIndividuales = data.gastosIndividuales || [];
+    data.gastosIndividuales.push({ id: `g-${Date.now()}`, persona, descripcion, monto });
+  }, statusEl);
+}
+
+function eliminarGastoIndividual(id, statusEl) {
+  return guardarPresupuestoJson((data) => {
+    data.gastosIndividuales = (data.gastosIndividuales || []).filter((g) => g.id !== id);
+  }, statusEl);
+}
+
+function setupPresupuesto() {
+  const integrantes = STATE.data.viaje.integrantes;
+  const personaSelect = document.getElementById("gasto-persona-select");
+  if (personaSelect) {
+    personaSelect.innerHTML = integrantes
+      .map((p) => `<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`)
+      .join("");
+  }
+
+  const comidaForm = document.getElementById("presupuesto-comida-form");
+  if (comidaForm) {
+    comidaForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = document.getElementById("presupuesto-comida-input");
+      const statusEl = document.getElementById("presupuesto-comida-status");
+      const btn = comidaForm.querySelector("button[type=submit]");
+      if (btn) btn.disabled = true;
+      await guardarComida(input.value.trim(), statusEl);
+      if (btn) btn.disabled = false;
+    });
+  }
+
+  const gastoForm = document.getElementById("gasto-individual-form");
+  if (gastoForm) {
+    gastoForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const statusEl = document.getElementById("gasto-individual-status");
+      const persona = document.getElementById("gasto-persona-select").value;
+      const descInput = document.getElementById("gasto-desc-input");
+      const montoInput = document.getElementById("gasto-monto-input");
+      const descripcion = descInput.value.trim();
+      const monto = montoInput.value.trim();
+      if (!descripcion || !monto) return;
+      const btn = gastoForm.querySelector("button[type=submit]");
+      if (btn) btn.disabled = true;
+      const ok = await agregarGastoIndividual(persona, descripcion, monto, statusEl);
+      if (ok) {
+        descInput.value = "";
+        montoInput.value = "";
+      }
+      if (btn) btn.disabled = false;
+    });
+  }
+
+  const gastosList = document.getElementById("gastos-individuales-list");
+  if (gastosList) {
+    gastosList.addEventListener("click", async (e) => {
+      const btn = e.target.closest(".gasto__eliminar");
+      if (!btn) return;
+      btn.disabled = true;
+      await eliminarGastoIndividual(btn.dataset.gastoId);
+    });
+  }
 }
 
 init();

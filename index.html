@@ -63,6 +63,37 @@
   </ul>
 </section>
 
+<section class="presupuesto" id="presupuesto-panel">
+  <h2 class="presupuesto__title">Presupuesto estimado</h2>
+
+  <form class="presupuesto__comida" id="presupuesto-comida-form">
+    <label>
+      <span>Comida (estimado total del viaje, se reparte entre los 4)</span>
+      <input type="text" id="presupuesto-comida-input" placeholder="Ej: 1200" inputmode="decimal">
+    </label>
+    <button type="submit">Guardar</button>
+    <span class="presupuesto__status" id="presupuesto-comida-status" aria-live="polite"></span>
+  </form>
+
+  <ul class="presupuesto__totales" id="presupuesto-totales">
+    <!-- se completa por JS -->
+  </ul>
+
+  <div class="presupuesto__gastos">
+    <h3 class="presupuesto__subtitle">Gastos individuales</h3>
+    <ul class="presupuesto__gastos-list" id="gastos-individuales-list">
+      <!-- se completa por JS -->
+    </ul>
+    <form class="presupuesto__gasto-form" id="gasto-individual-form">
+      <select id="gasto-persona-select"></select>
+      <input type="text" id="gasto-desc-input" placeholder="Descripción">
+      <input type="text" id="gasto-monto-input" placeholder="Monto (€)" inputmode="decimal">
+      <button type="submit">Agregar</button>
+    </form>
+    <span class="presupuesto__status" id="gasto-individual-status" aria-live="polite"></span>
+  </div>
+</section>
+
 <section class="pending" id="pending-panel" hidden>
   <h2 class="pending__title">Pendientes por resolver</h2>
 
