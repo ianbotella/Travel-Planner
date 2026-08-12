@@ -194,10 +194,42 @@
       "dia": 11
     },
     {
+      "id": "tren-tirano-milan",
+      "tipo": "tren",
+      "titulo": "Tren Tirano → Milán",
+      "tramo": "Tirano → Milán",
+      "fecha": "Mié 4 nov",
+      "hecho": false,
+      "campos": [
+        {
+          "label": "Compañía",
+          "valor": ""
+        },
+        {
+          "label": "N° de tren",
+          "valor": ""
+        },
+        {
+          "label": "Horario",
+          "valor": ""
+        },
+        {
+          "label": "Confirmación",
+          "valor": ""
+        },
+        {
+          "label": "Precio (€)",
+          "valor": ""
+        }
+      ],
+      "notas": "Tomarlo después de llegar en el Bernina Express — el auto se retira recién en Milán, no en Tirano.",
+      "dia": 11
+    },
+    {
       "id": "auto-italia",
       "tipo": "auto",
       "titulo": "Alquiler de auto — Italia",
-      "tramo": "Retiro en Tirano · Devolución en Roma",
+      "tramo": "Retiro en Milán · Devolución en Roma",
       "fecha": "Mié 4 nov → Jue 12 nov",
       "hecho": false,
       "campos": [
@@ -222,7 +254,7 @@
           "valor": ""
         }
       ],
-      "notas": "",
+      "notas": "No se puede retirar en Tirano — el retiro es en Milán, después del tren desde Tirano.",
       "dia": 11,
       "diaFin": 19
     },
