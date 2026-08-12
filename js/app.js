@@ -634,15 +634,16 @@ function getCosto(item) {
 }
 
 /* Reparte comida + reservas + gastos individuales entre los integrantes.
-   Una reserva sin "personas" se asume compartida entre todos; si tiene
-   "personas", su costo se reparte solo entre esa gente (ej. Maranello). */
+   La comida es un estimado fijo por persona (no se divide). Una reserva
+   sin "personas" se asume compartida entre todos; si tiene "personas",
+   su costo se reparte solo entre esa gente (ej. Maranello). */
 function computeBudget() {
   const integrantes = STATE.data.viaje.integrantes;
   const totals = Object.fromEntries(integrantes.map((p) => [p, 0]));
 
-  const comidaTotal = parseMonto(STATE.presupuesto.comida && STATE.presupuesto.comida.total);
+  const comidaPorPersona = parseMonto(STATE.presupuesto.comida && STATE.presupuesto.comida.porPersona);
   integrantes.forEach((p) => {
-    totals[p] += comidaTotal / integrantes.length;
+    totals[p] += comidaPorPersona;
   });
 
   [...STATE.transporte.items, ...STATE.hospedajes.items].forEach((item) => {
@@ -663,9 +664,10 @@ function computeBudget() {
 }
 
 function renderPresupuesto() {
-  const comidaInput = document.getElementById("presupuesto-comida-input");
-  if (comidaInput && document.activeElement !== comidaInput) {
-    comidaInput.value = (STATE.presupuesto.comida && STATE.presupuesto.comida.total) || "";
+  const comidaNota = document.getElementById("presupuesto-comida-nota");
+  if (comidaNota) {
+    const comidaPorPersona = parseMonto(STATE.presupuesto.comida && STATE.presupuesto.comida.porPersona);
+    comidaNota.innerHTML = `Comida (estimado): <strong>${formatEUR(comidaPorPersona)}</strong> por persona — ya incluido en los totales.`;
   }
 
   const totals = computeBudget();
@@ -749,13 +751,6 @@ async function guardarPresupuestoJson(mutate, statusEl) {
   }
 }
 
-function guardarComida(total, statusEl) {
-  return guardarPresupuestoJson((data) => {
-    data.comida = data.comida || {};
-    data.comida.total = total;
-  }, statusEl);
-}
-
 function agregarGastoIndividual(persona, descripcion, monto, statusEl) {
   return guardarPresupuestoJson((data) => {
     data.gastosIndividuales = data.gastosIndividuales || [];
@@ -776,19 +771,6 @@ function setupPresupuesto() {
     personaSelect.innerHTML = integrantes
       .map((p) => `<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`)
       .join("");
-  }
-
-  const comidaForm = document.getElementById("presupuesto-comida-form");
-  if (comidaForm) {
-    comidaForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const input = document.getElementById("presupuesto-comida-input");
-      const statusEl = document.getElementById("presupuesto-comida-status");
-      const btn = comidaForm.querySelector("button[type=submit]");
-      if (btn) btn.disabled = true;
-      await guardarComida(input.value.trim(), statusEl);
-      if (btn) btn.disabled = false;
-    });
   }
 
   const gastoForm = document.getElementById("gasto-individual-form");

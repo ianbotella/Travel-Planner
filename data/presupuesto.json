@@ -1,7 +1,7 @@
 {
   "moneda": "EUR",
   "comida": {
-    "total": ""
+    "porPersona": "1062.5"
   },
   "gastosIndividuales": []
 }

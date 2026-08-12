@@ -340,42 +340,18 @@ a { color: inherit; }
   margin: 1.1rem 0 0.5rem;
 }
 
-.presupuesto__comida {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.6rem;
-  flex-wrap: wrap;
+.presupuesto__comida-nota {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
   background: var(--paper-raised);
   border: 1px dashed var(--logistica);
   border-radius: var(--radius);
-  padding: 0.7rem 0.9rem;
+  padding: 0.6rem 0.9rem;
+  margin: 0;
 }
 
-.presupuesto__comida label {
-  display: grid;
-  gap: 0.2rem;
-  flex: 1 1 240px;
-}
+.presupuesto__comida-nota strong { color: var(--ink); }
 
-.presupuesto__comida span {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-}
-
-.presupuesto__comida input {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  padding: 0.4rem 0.55rem;
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  background: var(--paper);
-  color: var(--ink);
-}
-
-.presupuesto__comida button,
 .presupuesto__gasto-form button {
   font-family: var(--font-mono);
   font-size: 0.78rem;
