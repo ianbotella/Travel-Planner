@@ -106,19 +106,19 @@
       "titulo": "Vuelo Edimburgo → Ámsterdam",
       "tramo": "Edimburgo → Ámsterdam",
       "fecha": "Lun 2 nov",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "KLM"
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "KL0922"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "05:40"
         },
         {
           "label": "Confirmación",
@@ -126,7 +126,7 @@
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "469,84"
         }
       ],
       "notas": "",
