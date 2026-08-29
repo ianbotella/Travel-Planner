@@ -42,19 +42,19 @@
       "titulo": "Vuelo Santiago → Londres",
       "tramo": "Coruña/Santiago → Londres",
       "fecha": "Mié 28 oct",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "Ryanair"
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "FR 8379"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "20:40"
         },
         {
           "label": "Confirmación",
@@ -62,7 +62,7 @@
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "332,80"
         }
       ],
       "notas": "",
