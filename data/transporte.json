@@ -369,19 +369,19 @@
       "titulo": "Vuelo Roma → Santiago",
       "tramo": "Roma → Santiago",
       "fecha": "Jue 12 nov",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "Vuelyng"
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "VY6001"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "940"
         },
         {
           "label": "Confirmación",
@@ -389,10 +389,10 @@
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "555,96"
         }
       ],
-      "notas": "Probablemente con escala — confirmar.",
+      "notas": "Escala de 2hs en Barcelona",
       "dia": 19
     },
     {
