@@ -231,30 +231,30 @@
       "titulo": "Alquiler de auto — Italia",
       "tramo": "Retiro en Milán · Devolución en Roma",
       "fecha": "Mié 4 nov → Jue 12 nov",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Empresa",
-          "valor": ""
+          "valor": "Drivalia"
         },
         {
           "label": "N° de reserva",
-          "valor": ""
+          "valor": "723595689"
         },
         {
           "label": "Retiro",
-          "valor": ""
+          "valor": "Milan Linate Airport - 22:00"
         },
         {
           "label": "Devolución",
-          "valor": ""
+          "valor": "Fiumicino Airport - 07:30"
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "460.36"
         }
       ],
-      "notas": "No se puede retirar en Tirano — el retiro es en Milán, después del tren desde Tirano.",
+      "notas": "",
       "dia": 11,
       "diaFin": 19
     },
