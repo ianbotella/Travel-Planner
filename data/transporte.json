@@ -138,11 +138,11 @@
       "titulo": "Tren nocturno Ámsterdam → Chur",
       "tramo": "Ámsterdam → Chur",
       "fecha": "Mar 3 nov, 16:38 → Mié 4 nov, 6:48",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Compañía",
-          "valor": ""
+          "valor": "Varias"
         },
         {
           "label": "N° de tren / coche-cama",
@@ -150,18 +150,18 @@
         },
         {
           "label": "Horario",
-          "valor": "16:38 – 06:48"
+          "valor": "14:54"
         },
         {
           "label": "Confirmación",
-          "valor": ""
+          "valor": "151519656610, 417397421565"
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "413,63"
         }
       ],
-      "notas": "Chequear margen con el Bernina Express del mismo día.",
+      "notas": "",
       "dia": 10,
       "diaFin": 11
     },
