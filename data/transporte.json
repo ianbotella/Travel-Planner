@@ -74,19 +74,19 @@
       "titulo": "Vuelo Londres → Edimburgo",
       "tramo": "Londres → Edimburgo",
       "fecha": "Sáb 31 oct",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "EasyJet"
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "U2603"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "07:55"
         },
         {
           "label": "Confirmación",
@@ -94,7 +94,7 @@
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "235,96"
         }
       ],
       "notas": "",
