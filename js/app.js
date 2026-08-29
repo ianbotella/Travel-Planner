@@ -43,6 +43,14 @@ const PASAJE_FIN_VERBO = {
    tras un guardado sin tener que releer los JSON */
 const STATE = { data: null, transporte: null, hospedajes: null, presupuesto: null, lookups: null };
 
+/* giscus solo mantiene un iframe global por página: si insertás su script
+   más de una vez, reutiliza el iframe ya existente en vez de crear uno
+   nuevo, dejándolo en la tarjeta donde se abrió por primera vez. Por eso
+   usamos un único contenedor que movemos a la tarjeta que el usuario
+   abre en cada momento, en lugar de un slot por día. */
+let giscusHost = null;
+let giscusHostTerm = null;
+
 const GH_TOKEN_KEY = "tp_gh_token";
 const REPO_OWNER = location.hostname.endsWith(".github.io") ? location.hostname.split(".")[0] : "ianbotella";
 const REPO_NAME = location.pathname.split("/").filter(Boolean)[0] || "Travel-Planner";
@@ -273,13 +281,14 @@ function renderTimeline(data, lookups) {
 
   // habilitar giscus lazy-load al abrir cada <details> de comentarios
   timeline.querySelectorAll(".daycard__comments").forEach((details) => {
-    details.addEventListener(
-      "toggle",
-      () => {
-        if (details.open) loadGiscusInto(details.querySelector(".giscus-slot"), details.dataset.term);
-      },
-      { once: true }
-    );
+    details.addEventListener("toggle", () => {
+      if (!details.open) return;
+      // solo puede haber un widget de giscus activo a la vez: cerrar los demás
+      timeline.querySelectorAll(".daycard__comments[open]").forEach((other) => {
+        if (other !== details) other.open = false;
+      });
+      loadGiscusInto(details.querySelector(".giscus-slot"), details.dataset.term);
+    });
   });
 }
 
@@ -560,9 +569,20 @@ function setupSettingsModal() {
   });
 }
 
-function loadGiscusInto(slot, term) {
-  if (!slot || slot.dataset.loaded) return;
-  slot.dataset.loaded = "true";
+function loadGiscusInto(placeholder, term) {
+  if (!placeholder) return;
+
+  if (!giscusHost) {
+    giscusHost = document.createElement("div");
+    giscusHost.className = "giscus-host";
+  }
+  // trasladar el contenedor único a la tarjeta recién abierta
+  placeholder.appendChild(giscusHost);
+
+  // ya está cargado el comentario de este día en el host: no reinyectar
+  if (giscusHostTerm === term) return;
+  giscusHostTerm = term;
+  giscusHost.innerHTML = "";
 
   const script = document.createElement("script");
   script.src = "https://giscus.app/client.js";
@@ -580,7 +600,7 @@ function loadGiscusInto(slot, term) {
   script.setAttribute("data-input-position", "top");
   script.setAttribute("data-theme", "light");
   script.setAttribute("data-lang", GISCUS_CONFIG.lang);
-  slot.appendChild(script);
+  giscusHost.appendChild(script);
 }
 
 function setupScrollSpy(bloques) {
