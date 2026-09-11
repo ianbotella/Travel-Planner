@@ -14,11 +14,11 @@
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "IB0102"
         },
         {
           "label": "Horario",
-          "valor": "5:40"
+          "valor": "05:40"
         },
         {
           "label": "Confirmación",
@@ -42,19 +42,19 @@
       "titulo": "Vuelo Santiago → Londres",
       "tramo": "Coruña/Santiago → Londres",
       "fecha": "Mié 28 oct",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "Ryanair"
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "FR 8379"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "20:40"
         },
         {
           "label": "Confirmación",
@@ -62,7 +62,7 @@
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "332,80"
         }
       ],
       "notas": "",
@@ -74,19 +74,19 @@
       "titulo": "Vuelo Londres → Edimburgo",
       "tramo": "Londres → Edimburgo",
       "fecha": "Sáb 31 oct",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "EasyJet"
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "U2603"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "07:55"
         },
         {
           "label": "Confirmación",
@@ -94,7 +94,7 @@
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "235,96"
         }
       ],
       "notas": "",
@@ -106,19 +106,19 @@
       "titulo": "Vuelo Edimburgo → Ámsterdam",
       "tramo": "Edimburgo → Ámsterdam",
       "fecha": "Lun 2 nov",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "KLM"
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "KL0922"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "05:40"
         },
         {
           "label": "Confirmación",
@@ -126,7 +126,7 @@
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "469,84"
         }
       ],
       "notas": "",
@@ -138,11 +138,11 @@
       "titulo": "Tren nocturno Ámsterdam → Chur",
       "tramo": "Ámsterdam → Chur",
       "fecha": "Mar 3 nov, 16:38 → Mié 4 nov, 6:48",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Compañía",
-          "valor": ""
+          "valor": "Varias"
         },
         {
           "label": "N° de tren / coche-cama",
@@ -150,15 +150,15 @@
         },
         {
           "label": "Horario",
-          "valor": "16:38 – 06:48"
+          "valor": "14:54"
         },
         {
           "label": "Confirmación",
-          "valor": ""
+          "valor": "151519656610, 417397421565"
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "413,63"
         }
       ],
       "notas": "Tras llegar a Chur, continuar con un bus directo hasta Milán.",
@@ -199,27 +199,27 @@
       "titulo": "Alquiler de auto — Italia",
       "tramo": "Retiro en Milán · Devolución en Roma",
       "fecha": "Mié 4 nov → Jue 12 nov",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Empresa",
-          "valor": ""
+          "valor": "Drivalia"
         },
         {
           "label": "N° de reserva",
-          "valor": ""
+          "valor": "723595689"
         },
         {
           "label": "Retiro",
-          "valor": ""
+          "valor": "Milan Linate Airport - 22:00"
         },
         {
           "label": "Devolución",
-          "valor": ""
+          "valor": "Fiumicino Airport - 07:30"
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "460.36"
         }
       ],
       "notas": "No se puede retirar en Chur — el retiro es en Milán, después del bus desde Chur.",
@@ -337,19 +337,19 @@
       "titulo": "Vuelo Roma → Santiago",
       "tramo": "Roma → Santiago",
       "fecha": "Jue 12 nov",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Aerolínea",
-          "valor": ""
+          "valor": "Vuelyng"
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "VY6001"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "940"
         },
         {
           "label": "Confirmación",
@@ -357,10 +357,10 @@
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "555,96"
         }
       ],
-      "notas": "Probablemente con escala — confirmar.",
+      "notas": "Escala de 2hs en Barcelona",
       "dia": 19
     },
     {
@@ -377,7 +377,7 @@
         },
         {
           "label": "N° de vuelo",
-          "valor": ""
+          "valor": "IB0105"
         },
         {
           "label": "Horario",
