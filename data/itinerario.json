@@ -121,9 +121,9 @@
       "dia": 11,
       "fecha": "Mié 4 nov",
       "bloque": "amsterdam-suiza",
-      "tramo": "Chur → Bernina Express → Tirano → Milán",
-      "medio": "tren-auto",
-      "notas": "Llegada a Tirano ~13:00 en el Bernina Express. No se puede alquilar el auto ahí — hay que tomar un tren hasta Milán y retirarlo recién ahí."
+      "tramo": "Chur → Milán",
+      "medio": "auto",
+      "notas": "Tras llegar a Chur en el tren nocturno, se toma un bus directo hasta Milán y allí se retira el auto."
     },
     {
       "dia": 12,

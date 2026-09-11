@@ -161,43 +161,15 @@
           "valor": ""
         }
       ],
-      "notas": "Chequear margen con el Bernina Express del mismo día.",
+      "notas": "Tras llegar a Chur, continuar con un bus directo hasta Milán.",
       "dia": 10,
       "diaFin": 11
     },
     {
-      "id": "bernina-express",
-      "tipo": "tren",
-      "titulo": "Bernina Express",
-      "tramo": "Chur → Tirano",
-      "fecha": "Mié 4 nov",
-      "hecho": false,
-      "campos": [
-        {
-          "label": "Asientos reservados",
-          "valor": ""
-        },
-        {
-          "label": "Horario",
-          "valor": ""
-        },
-        {
-          "label": "Confirmación",
-          "valor": ""
-        },
-        {
-          "label": "Precio (€)",
-          "valor": ""
-        }
-      ],
-      "notas": "Suele requerir reserva de asiento aparte del pasaje.",
-      "dia": 11
-    },
-    {
-      "id": "tren-tirano-milan",
-      "tipo": "tren",
-      "titulo": "Tren Tirano → Milán",
-      "tramo": "Tirano → Milán",
+      "id": "bus-chur-milan",
+      "tipo": "auto",
+      "titulo": "Bus Chur → Milán",
+      "tramo": "Chur → Milán",
       "fecha": "Mié 4 nov",
       "hecho": false,
       "campos": [
@@ -206,10 +178,6 @@
           "valor": ""
         },
         {
-          "label": "N° de tren",
-          "valor": ""
-        },
-        {
           "label": "Horario",
           "valor": ""
         },
@@ -222,7 +190,7 @@
           "valor": ""
         }
       ],
-      "notas": "Tomarlo después de llegar en el Bernina Express — el auto se retira recién en Milán, no en Tirano.",
+      "notas": "Bus directo desde Chur hasta Milán para evitar el Bernina Express y llegar con el auto en la misma ciudad.",
       "dia": 11
     },
     {
@@ -254,7 +222,7 @@
           "valor": ""
         }
       ],
-      "notas": "No se puede retirar en Tirano — el retiro es en Milán, después del tren desde Tirano.",
+      "notas": "No se puede retirar en Chur — el retiro es en Milán, después del bus desde Chur.",
       "dia": 11,
       "diaFin": 19
     },
