@@ -171,23 +171,23 @@
       "titulo": "Bus Chur → Milán",
       "tramo": "Chur → Milán",
       "fecha": "Mié 4 nov",
-      "hecho": false,
+      "hecho": true,
       "campos": [
         {
           "label": "Compañía",
-          "valor": ""
+          "valor": "Flixbus"
         },
         {
           "label": "Horario",
-          "valor": ""
+          "valor": "17:15"
         },
         {
           "label": "Confirmación",
-          "valor": ""
+          "valor": "3389398171"
         },
         {
           "label": "Precio (€)",
-          "valor": ""
+          "valor": "85,76"
         }
       ],
       "notas": "Bus directo desde Chur hasta Milán para evitar el Bernina Express y llegar con el auto en la misma ciudad.",
