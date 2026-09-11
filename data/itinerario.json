@@ -169,9 +169,9 @@
       "dia": 17,
       "fecha": "Mar 10 nov",
       "bloque": "italia",
-      "tramo": "Roma",
-      "medio": "quieto",
-      "notas": "Día completo en Roma."
+      "tramo": "Roma → Nápoles → Roma",
+      "medio": "auto",
+      "notas": "Salida temprana desde Roma, desayuno y día completo en Nápoles para volver a la noche."
     },
     {
       "dia": 18,
